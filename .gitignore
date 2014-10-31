@@ -1,0 +1,7 @@
+# VIM related files
+*.swo
+*.swp
+*.swn
+*.swm
+
+
