@@ -7,6 +7,7 @@ Meteor.methods({
 
     var geo = new GeoCoder({
       geocoderProvider: "openstreetmap"
+      //geocoderProvider: "google"
     });
 
     console.log('init geo');
