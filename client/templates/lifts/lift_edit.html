@@ -1,0 +1,40 @@
+<template name="liftEdit">
+  <form class="main form">
+
+    <div class="form-group">
+      <label class="control-label" for="url">From</label>
+      <div class="controls">
+        <input name="from" id="from" type="text" value="{{from}}"
+               placeholder="From" class="form-control"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="title">To</label>
+      <div class="controls">
+        <input name="to" id="to" type="text" value="{{to}}"
+               placeholder="To" class="form-control"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="url">Date</label>
+      <div class="controls">
+        <input name="date" id="date" type="text" value="{{date}}"
+               placeholder="Date" class="form-control"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="url">Price</label>
+      <div class="controls">
+        <input name="price" id="price" type="text" value="{{price}}"
+               placeholder="Price" class="form-control"/>
+      </div>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary submit"/>
+    <hr/>
+    <a class="btn btn-danger delete" href="#">Delete post</a>
+  </form>
+</template>
