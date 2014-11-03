@@ -2,29 +2,22 @@ Meteor.methods({
   citySearch: function(query) {
     check(query, String);
 
-    var uniqueArray = [];
-    var results = [];
+    var options = {
+      params: {
+        featureClass: "P",
+        style: "full",
+        country: 'fr',
+        lang: 'fr',
+        maxRows: 12,
+        username: 'metacarpooling',
+        name_startsWith: query
+      }
+    };
 
-    var geo = new GeoCoder({
-      geocoderProvider: "openstreetmap"
-      //geocoderProvider: "google"
+    var res = HTTP.get("http://ws.geonames.org/searchJSON", options);
+
+    return res.data.geonames.map(function(geoname) {
+      return { value: geoname.asciiName };
     });
-
-    console.log('init geo');
-    var places = geo.geocode(query + ", France");
-
-    places.forEach(function(place) {
-      if (typeof(place.city) != 'undefined')
-        uniqueArray[place.city] = '';
-    });
-
-    console.log(uniqueArray);
-
-    for (city in uniqueArray)
-      results.push({ value: city });
-
-    console.log(results);
-
-    return results;
   }
 });
