@@ -12,7 +12,5 @@ ian:accounts-ui-bootstrap-3
 accounts-password
 audit-argument-checks
 http
-aldeed:geocoder
 sergeyt:typeahead
 gildaspk:moment-datepicker
-
