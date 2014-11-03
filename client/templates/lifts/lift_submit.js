@@ -11,7 +11,6 @@ Template.liftSubmit.rendered = function() {
 
   Meteor.typeahead(from, typeaheadCallback);
   Meteor.typeahead(to, typeaheadCallback);
-
   Meteor.typeahead.inject();
 
   $('#date').datepicker({ format: 'DD/MM/YYYY' });

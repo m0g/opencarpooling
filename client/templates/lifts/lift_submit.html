@@ -1,41 +1,34 @@
 <template name="liftSubmit">
   <div class="container">
     <form class="main form">
+      <h1>Offer a lift</h1>
+
       <div class="form-group">
-        <label class="control-label" for="url">From</label>
-        <div class="controls">
-          <input class="form-control" name="from" type="text"
-             placeholder="From" id="from"
-             autocomplete="off" spellcheck="off"
-             data-source="geocode"/>
-        </div>
+        <input class="form-control input-lg" name="from" type="text"
+           placeholder="From" id="from"
+           autocomplete="off" spellcheck="off"
+           data-source="geocode"/>
       </div>
 
       <div class="form-group">
-        <label class="control-label" for="title">To</label>
-        <div class="controls">
-          <input name="to" id="to" type="text" value=""
-                 placeholder="To" class="form-control"/>
-        </div>
+        <input name="to" id="to" type="text" value=""
+               placeholder="To" class="form-control input-lg"/>
       </div>
 
       <div class="form-group">
-        <label class="control-label" for="url">Date</label>
-        <div class="controls">
-          <input name="date" id="date" type="text" value=""
-                 placeholder="Date" class="form-control"/>
-        </div>
+        <input name="date" id="date" type="text" value=""
+               placeholder="Date" class="form-control input-lg"/>
+      </div>
+
+      <div class="input-group">
+        <input name="price" id="price" type="text" value=""
+               placeholder="Price" class="form-control input-lg"/>
+        <span class="input-group-addon">€</span>
       </div>
 
       <div class="form-group">
-        <label class="control-label" for="url">Price</label>
-        <div class="controls">
-          <input name="price" id="price" type="text" value=""
-                 placeholder="Price" class="form-control"/>
-        </div>
+        <input type="submit" value="Submit" class="btn btn-primary"/>
       </div>
-
-      <input type="submit" value="Submit" class="btn btn-primary"/>
     </form>
   </div>
 </template>
