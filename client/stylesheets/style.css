@@ -18,13 +18,14 @@ body {
 .navbar {
   margin-bottom: 0;
 }
-  /* line 32, ../sass/style.scss */
-  .navbar .navbar-inner {
-    -webkit-border-radius: 0px 0px 3px 3px;
-    -moz-border-radius: 0px 0px 3px 3px;
-    -ms-border-radius: 0px 0px 3px 3px;
-    -o-border-radius: 0px 0px 3px 3px;
-    border-radius: 0px 0px 3px 3px; }
+/* line 32, ../sass/style.scss */
+.navbar .navbar-inner {
+  -webkit-border-radius: 0px 0px 3px 3px;
+  -moz-border-radius: 0px 0px 3px 3px;
+  -ms-border-radius: 0px 0px 3px 3px;
+  -o-border-radius: 0px 0px 3px 3px;
+  border-radius: 0px 0px 3px 3px;
+}
 
 #spinner {
   height: 300px; }
@@ -222,4 +223,21 @@ background-color: #0097cf;
 }
 .tt-suggestion p {
 margin: 0;
+}
+
+form.form.lift span.twitter-typeahead {
+  width: 100%;
+  height: 100%;
+}
+
+form.form.lift .input-group span.twitter-typeahead input.form-control {
+  height: 100%;
+}
+
+form.form.lift div.input-group {
+  margin: 10px 0 30px;
+}
+
+form#lift-search span.input-spacer input.input-lg {
+  vertical-align: top;
 }
