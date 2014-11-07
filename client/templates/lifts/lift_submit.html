@@ -1,45 +1,52 @@
 <template name="liftSubmit">
-    <form class="main form lift col-md-4">
-      <h1>Offer a lift</h1>
+  <form class="main form lift col-md-4">
+    <h1>Offer a lift</h1>
 
-      <div class="input-group">
-        <input class="form-control input-lg" name="from" type="text"
-           placeholder="From" id="from"
-           autocomplete="off" spellcheck="off"
-           data-source="geocode"/>
+    <div class="input-group">
+      <input class="form-control input-lg" name="from" type="text"
+         placeholder="From" id="from"
+         autocomplete="off" spellcheck="off"
+         data-source="geocode"/>
 
-        <span class="input-group-addon">
-          <i class="fa fa-map-marker"></i>
-        </span>
-      </div>
+      <input type="hidden" id="from-lat" value="0" name="from-lat" />
+      <input type="hidden" id="from-lng" value="0" name="from-lng" />
 
-      <div class="input-group">
-        <input name="to" id="to" type="text" value=""
-               placeholder="To" class="form-control input-lg"/>
+      <span class="input-group-addon">
+        <i class="fa fa-map-marker"></i>
+      </span>
+    </div>
 
-        <span class="input-group-addon">
-          <i class="fa fa-map-marker"></i>
-        </span>
-      </div>
+    <div class="input-group">
+      <input name="to" id="to" type="text" value=""
+             placeholder="To" class="form-control input-lg"/>
 
-      <div class="input-group">
-        <input name="date" id="date" type="text" value=""
-               placeholder="Date" class="form-control input-lg"/>
+      <input type="hidden" id="to-lat" value="0" name="to-lat" />
+      <input type="hidden" id="to-lng" value="0" name="to-lng" />
 
-        <span class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </span>
-      </div>
+      <span class="input-group-addon">
+        <i class="fa fa-map-marker"></i>
+      </span>
+    </div>
 
-      <div class="input-group">
-        <input name="price" id="price" type="text" value=""
-               placeholder="Price" class="form-control input-lg"/>
-        <span class="input-group-addon">€</span>
-      </div>
+    <div class="input-group">
+      <input name="date" id="date" type="text" value=""
+             placeholder="Date" class="form-control input-lg"/>
 
-      <div class="form-group">
-        <input type="submit" value="Submit" class="btn btn-primary"/>
-      </div>
-    </form>
-    <div id="form-map" class="col-md-8"></div>
+      <span class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </span>
+    </div>
+
+    <div class="input-group">
+      <input name="price" id="price" type="text" value=""
+             placeholder="Price" class="form-control input-lg"/>
+      <span class="input-group-addon">€</span>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" value="Submit" class="btn btn-primary"/>
+    </div>
+  </form>
+
+  <div id="form-map" class="col-md-8"></div>
 </template>

@@ -1,26 +1,104 @@
-var initBackgroundMap = function() {
-  var map = L.mapbox.map('form-map', Meteor.settings.public.mapboxMapName)
+var map = null
+  , polyline = null
+
+  , markerFrom = null
+  , markerFromLat = 0
+  , markerFromLng = 0
+
+  , markerTo = null
+  , markerToLat = 0
+  , markerToLng = 0;
+
+var initLiftMap = function() {
+  map = L.mapbox.map('form-map', Meteor.settings.public.mapboxMapName)
     .setView([ 46.088, 2.219 ], 6);
+
+  polyline = L.polyline([]).addTo(map);
+},
+
+mapDrawLine = function() {
+  polyline.addLatLng(new L.LatLng(markerFromLat, markerFromLng));
+  polyline.addLatLng(new L.LatLng(markerToLat, markerToLng));
+},
+
+hiddenInputMutation = function(mutations) {
+  mutations.forEach(function (mutation) {
+    if (mutation.target.name == 'from-lat')
+      markerFromLat = mutation.target.value;
+    else if (mutation.target.name == 'from-lng')
+      markerFromLng = mutation.target.value;
+    else if (mutation.target.name == 'to-lat')
+      markerToLat = mutation.target.value;
+    else if (mutation.target.name == 'to-lng')
+      markerToLng = mutation.target.value;
+
+    console.log(mutation.target.name, mutation.target.value);
+
+    if (markerFromLat && markerFromLng) {
+      if (!markerFrom) {
+        markerFrom = new L.Marker(new L.LatLng(markerFromLat, markerFromLng));
+        map.addLayer(markerFrom);
+      } else markerFrom.setLatLng(new L.LatLng(markerFromLat, markerFromLng));
+    }
+
+    if (markerToLat && markerToLng) {
+      if (!markerTo) {
+        markerTo = new L.Marker(new L.LatLng(markerToLat, markerToLng));
+        map.addLayer(markerTo);
+      } else markerTo.setLatLng(new L.LatLng(markerToLat, markerToLng));
+    }
+
+    if (markerFromLat && markerFromLng && markerToLat && markerToLng)
+      mapDrawLine();
+  });
+},
+
+monitorHiddenInputChanges = function(fromLat, fromLng, toLat, toLng) {
+  var observer = new MutationObserver(hiddenInputMutation);
+
+  observer.observe(fromLat, { attributes: true });
+  observer.observe(fromLng, { attributes: true });
+
+  observer.observe(toLat, { attributes: true });
+  observer.observe(toLng, { attributes: true });
+
+  var records = observer.takeRecords();
+  console.log(records);
 };
 
-
 Template.liftSubmit.rendered = function() {
-  var from = document.getElementById('from');
-  var to = document.getElementById('to');
+  var from = document.getElementById('from')
+    , fromLat = document.getElementById('from-lat')
+    , fromLng = document.getElementById('from-lng')
 
-  var typeaheadCallback = function(query, callback) {
+    , to = document.getElementById('to')
+    , toLat = document.getElementById('to-lat')
+    , toLng = document.getElementById('to-lng');
+
+  Meteor.typeahead(from, function(query, callback) {
     Meteor.call('citySearch', query, function(err, res) {
+      fromLat.value = res[0].lat;
+      fromLng.value = res[0].lng;
+
       callback(res);
     });
-  };
+  });
 
-  Meteor.typeahead(from, typeaheadCallback);
-  Meteor.typeahead(to, typeaheadCallback);
+  Meteor.typeahead(to, function(query, callback) {
+    Meteor.call('citySearch', query, function(err, res) {
+      toLat.value = res[0].lat;
+      toLng.value = res[0].lng;
+
+      callback(res);
+    });
+  });
+
   Meteor.typeahead.inject();
 
   $('#date').datepicker({ format: 'DD/MM/YYYY' });
 
-  initBackgroundMap();
+  initLiftMap();
+  monitorHiddenInputChanges(fromLat, fromLng, toLat, toLng);
 };
 
 Template.liftSubmit.events({
