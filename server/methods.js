@@ -2,7 +2,18 @@ Meteor.methods({
   citySearch: function(query) {
     check(query, String);
 
+    var citiesCache = CitiesCache.findOne({ query: query });
+    console.log(citiesCache);
+
+    if (citiesCache) return citiesCache.autoCompletion;
+
     var geoname = new Geonames();
-    return geoname.getCities(query);
+    var autoCompletion = geoname.getCities(query);
+
+    var citiesCacheId = CitiesCache.insert({ query: query, autoCompletion: autoCompletion });
+    console.log(citiesCacheId);
+
+    return autoCompletion;
+    //return geoname.getCities(query);
   }
 });

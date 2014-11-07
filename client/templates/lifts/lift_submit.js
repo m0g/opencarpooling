@@ -17,6 +17,7 @@ var initLiftMap = function() {
 },
 
 mapDrawLine = function() {
+  polyline.spliceLatLngs(0, 2);
   polyline.addLatLng(new L.LatLng(markerFromLat, markerFromLng));
   polyline.addLatLng(new L.LatLng(markerToLat, markerToLng));
 },
@@ -76,6 +77,8 @@ Template.liftSubmit.rendered = function() {
     , toLng = document.getElementById('to-lng');
 
   Meteor.typeahead(from, function(query, callback) {
+    if (query.length < 4) return [];
+
     Meteor.call('citySearch', query, function(err, res) {
       fromLat.value = res[0].lat;
       fromLng.value = res[0].lng;
@@ -85,6 +88,8 @@ Template.liftSubmit.rendered = function() {
   });
 
   Meteor.typeahead(to, function(query, callback) {
+    if (query.length < 4) return [];
+
     Meteor.call('citySearch', query, function(err, res) {
       toLat.value = res[0].lat;
       toLng.value = res[0].lng;
