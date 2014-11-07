@@ -1,3 +1,9 @@
+var initBackgroundMap = function() {
+  var map = L.mapbox.map('form-map', Meteor.settings.public.mapboxMapName)
+    .setView([ 46.088, 2.219 ], 6);
+};
+
+
 Template.liftSubmit.rendered = function() {
   var from = document.getElementById('from');
   var to = document.getElementById('to');
@@ -13,6 +19,8 @@ Template.liftSubmit.rendered = function() {
   Meteor.typeahead.inject();
 
   $('#date').datepicker({ format: 'DD/MM/YYYY' });
+
+  initBackgroundMap();
 };
 
 Template.liftSubmit.events({
