@@ -1,15 +1,18 @@
 <template name="liftsList">
   <div class="jumbotron search">
-    <h2>Where do you want to go?</h2>
+    <div id="bg-map"></div>
 
     <div class="container">
-      <form id="lift-search">
-        <input type="text" placeholder="From" class="input-lg" id="from" />
-        <input type="text" placeholder="To" class="input-lg" id="to" />
-        <span class="input-spacer">
-          <input type="text" placeholder="When" class="input-lg" id="when" />
-        </span>
-      </form>
+      <div id="search-overlay" class="col-md-10 col-md-offset-1">
+        <h2>Where do you want to go?</h2>
+        <form id="lift-search">
+          <input type="text" placeholder="From" class="input-lg" id="from" />
+          <input type="text" placeholder="To" class="input-lg" id="to" />
+          <span class="input-spacer">
+            <input type="text" placeholder="When" class="input-lg" id="when" />
+          </span>
+        </form>
+      </div>
     </div>
   </div>
   <div class="container">

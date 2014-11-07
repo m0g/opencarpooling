@@ -1,3 +1,18 @@
+var initBackgroundMap = function() {
+  var map = L.mapbox.map('bg-map', Meteor.settings.public.mapboxMapName, {
+    zoomControl: false
+  }).setView([ 46.088, 2.219 ], 8);
+
+  // Disable drag and zoom handlers.
+  map.dragging.disable();
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+
+  // Disable tap handler, if present.
+  if (map.tap) map.tap.disable();
+};
+
 Template.liftsList.rendered = function() {
   var from = document.getElementById('from');
   var to = document.getElementById('to');
@@ -14,6 +29,8 @@ Template.liftsList.rendered = function() {
   Meteor.typeahead.inject();
 
   $('#when').datepicker({ format: 'DD/MM/YYYY' });
+
+  initBackgroundMap();
 };
 
 Template.liftsList.helpers({

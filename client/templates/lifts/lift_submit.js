@@ -4,7 +4,6 @@ Template.liftSubmit.rendered = function() {
 
   var typeaheadCallback = function(query, callback) {
     Meteor.call('citySearch', query, function(err, res) {
-      console.log(res);
       callback(res);
     });
   };
