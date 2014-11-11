@@ -14,12 +14,14 @@ Meteor.methods({
     console.log(citiesCacheId);
 
     return autoCompletion;
-    //return geoname.getCities(query);
   },
 
   directionsSearch: function(from, to) {
     check(from, String);
     check(to, String);
+
+    var directionsCache = DirectionsCache.findOne({ from: from, to: to });
+    if (directionsCache) return directionsCache.line;
 
     var line = [];
     var options = { params: { origin: from, destination: to }};
@@ -33,6 +35,7 @@ Meteor.methods({
       line.push([ step.end_location.lat, step.end_location.lng ]);
     });
 
+    var directionsCacheId = DirectionsCache.insert({ from: from, to: to, line: line });
     return line;
   }
 });
