@@ -17,9 +17,18 @@ var initLiftMap = function() {
 },
 
 mapDrawLine = function() {
-  polyline.spliceLatLngs(0, 2);
-  polyline.addLatLng(new L.LatLng(markerFromLat, markerFromLng));
-  polyline.addLatLng(new L.LatLng(markerToLat, markerToLng));
+  var from = [ markerFromLat, markerFromLng ].join(',');
+  var to = [ markerToLat, markerToLng ].join(',');
+
+  Meteor.call('directionsSearch', from, to, function(err, res) {
+    polyline.spliceLatLngs(0, 1000);
+
+    res.forEach(function(latLng) {
+      polyline.addLatLng(latLng);
+    });
+
+    map.fitBounds(polyline.getBounds());
+  });
 },
 
 hiddenInputMutation = function(mutations) {
