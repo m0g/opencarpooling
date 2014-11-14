@@ -6,11 +6,13 @@
       <div id="search-overlay" class="col-md-10 col-md-offset-1">
         <h2>Where do you want to go?</h2>
         <form id="lift-search">
-          <input type="text" placeholder="From" class="input-lg" id="from" />
-          <input type="text" placeholder="To" class="input-lg" id="to" />
+          <input type="text" placeholder="From" class="input-lg" id="from" name="from" />
+          <input type="text" placeholder="To" class="input-lg" id="to" name="to" />
           <span class="input-spacer">
-            <input type="text" placeholder="When" class="input-lg" id="when" />
+            <input type="text" placeholder="When" class="input-lg" id="when" name="when"/>
           </span>
+
+          <input type="submit" value="Search" />
         </form>
       </div>
     </div>

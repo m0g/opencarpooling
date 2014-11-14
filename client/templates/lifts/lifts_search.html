@@ -1,0 +1,31 @@
+<template name="liftsSearch">
+  <nav class="navbar" id="search-navbar">
+  <div class="container">
+    <form id="lift-search" class="col-md-12">
+      <span class="input-spacer col-md-4">
+        <input type="text" placeholder="From" class="input col-md-12"
+               id="from" value="{{searchQuery.from}}" />
+      </span>
+
+      <span class="input-spacer col-md-4">
+        <input type="text" placeholder="To" class="input col-md-12"
+               id="to" value="{{searchQuery.to}}" />
+      </span>
+
+      <span class="input-spacer col-md-4">
+        <input type="text" placeholder="When" class="input col-md-12"
+               id="when" value="{{searchQuery.when}}" />
+      </span>
+    </form>
+  </div>
+  </nav>
+
+  <div class="container">
+    <h3>Lifts search results {{hi}}</h3>
+    <div class="lifts">
+      {{#each lifts}}
+        {{> liftItem}}
+      {{/each}}
+    </div>
+  </div>
+</template>

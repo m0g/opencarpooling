@@ -280,3 +280,9 @@ form#lift-search span.input-spacer input.input-lg {
   z-index: 1;
 }
 
+#search-navbar {
+  background: rgb(131, 211, 77);
+  border-radius: 0;
+  padding-top: 10px;
+}
+}
