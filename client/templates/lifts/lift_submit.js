@@ -121,7 +121,15 @@ Template.liftSubmit.events({
 
     var lift = {
       from: $(e.target).find('[name=from]').val(),
+
+      //fromLoc: [ $(e.target).find('[name=from-lat]').val(),
+      //           $(e.target).find('[name=from-lng]').val() ],
+
       to: $(e.target).find('[name=to]').val(),
+
+      //toLoc: [ $(e.target).find('[name=to-lat]').val(),
+      //         $(e.target).find('[name=to-lng]').val() ],
+
       date: $(e.target).find('[name=date]').val(),
       price: $(e.target).find('[name=price]').val()
     };
