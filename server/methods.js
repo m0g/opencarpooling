@@ -37,5 +37,24 @@ Meteor.methods({
 
     var directionsCacheId = DirectionsCache.insert({ from: from, to: to, line: line });
     return line;
+  },
+
+  liftsSearch: function(searchQuery) {
+    console.log(searchQuery);
+
+    check(searchQuery.from, String);
+    check(searchQuery.to, String);
+    check(searchQuery.when, String);
+
+    var query = { fromLoc: { $near : { 
+      $geometry: { 
+        type : "Point" ,
+        coordinates: [ 6.11667, 45.9 ]
+      } },
+      $maxDistance : 10000
+    }};
+
+    var lifts = Lifts.find(query);
+    return lifts.fetch();
   }
 });
