@@ -22,6 +22,7 @@ body {
 
 .navbar {
   margin-bottom: 0;
+  z-index: 1;
 }
 /* line 32, ../sass/style.scss */
 .navbar .navbar-inner {
@@ -276,6 +277,11 @@ form#lift-search span.input-spacer input.input-lg {
   min-height: 100%;
 }
 
+div.leaflet-map-pane {
+  z-index: 0;
+  position: fixed;
+}
+
 #lift-search {
   z-index: 1;
 }
@@ -285,4 +291,7 @@ form#lift-search span.input-spacer input.input-lg {
   border-radius: 0;
   padding-top: 10px;
 }
+
+#latest-lifts {
+  z-index: 1;
 }
