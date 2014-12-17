@@ -277,7 +277,7 @@ form#lift-search span.input-spacer input.input-lg {
   min-height: 100%;
 }
 
-div.leaflet-map-pane {
+#bg-map div.leaflet-map-pane {
   z-index: 0;
   position: fixed;
 }
