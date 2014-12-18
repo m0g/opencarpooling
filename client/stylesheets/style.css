@@ -243,6 +243,7 @@ div.jumbotron.search {
   z-index: 1;
   padding: 20px 30px 44px;
   margin-top: 16%;
+  box-shadow: 1px 0px 13px #bbb;
 }
 
 form.form.lift, #form-map {
@@ -294,4 +295,9 @@ form#lift-search span.input-spacer input.input-lg {
 
 #latest-lifts {
   z-index: 1;
+}
+
+nav.navbar-default {
+  box-shadow: 0px 0px 7px #ccc;
+  border-radius: 0;
 }
