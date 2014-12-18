@@ -16,9 +16,27 @@ var initLiftMap = function() {
   polyline = L.polyline([]).addTo(map);
 },
 
+addMarker = function(lat, lng, title) {
+  L.mapbox.markerLayer({
+    type: 'Feature',
+    geometry: {
+        type: 'Point',
+        coordinates: [ lat, lng ]
+    },
+    properties: {
+      title: title,
+      description: '1718 14th St NW, Washington, DC',
+      'marker-size': 'large'
+    }
+  }).addTo(map);
+},
+
 mapDrawLine = function() {
   var from = [ markerFromLng, markerFromLat ].join(',');
   var to = [ markerToLng, markerToLat ].join(',');
+
+  addMarker(markerFromLat, markerFromLng, 'From');
+  addMarker(markerToLat, markerToLng, 'To');
 
   Meteor.call('directionsSearch', from, to, function(err, res) {
     console.log(res);
@@ -31,51 +49,6 @@ mapDrawLine = function() {
     map.fitBounds(polyline.getBounds());
   });
 };
-
-//hiddenInputMutation = function(mutations) {
-//  mutations.forEach(function (mutation) {
-//    if (mutation.target.name == 'from-lat')
-//      markerFromLat = mutation.target.value;
-//    else if (mutation.target.name == 'from-lng')
-//      markerFromLng = mutation.target.value;
-//    else if (mutation.target.name == 'to-lat')
-//      markerToLat = mutation.target.value;
-//    else if (mutation.target.name == 'to-lng')
-//      markerToLng = mutation.target.value;
-
-//    console.log(mutation.target.name, mutation.target.value);
-
-//    if (markerFromLat && markerFromLng) {
-//      if (!markerFrom) {
-//        markerFrom = new L.Marker(new L.LatLng(markerFromLat, markerFromLng));
-//        map.addLayer(markerFrom);
-//      } else markerFrom.setLatLng(new L.LatLng(markerFromLat, markerFromLng));
-//    }
-
-//    if (markerToLat && markerToLng) {
-//      if (!markerTo) {
-//        markerTo = new L.Marker(new L.LatLng(markerToLat, markerToLng));
-//        map.addLayer(markerTo);
-//      } else markerTo.setLatLng(new L.LatLng(markerToLat, markerToLng));
-//    }
-
-//    if (markerFromLat && markerFromLng && markerToLat && markerToLng)
-//      mapDrawLine();
-//  });
-//},
-
-//monitorHiddenInputChanges = function(fromLat, fromLng, toLat, toLng) {
-//  var observer = new MutationObserver(hiddenInputMutation);
-
-//  observer.observe(fromLat, { attributes: true });
-//  observer.observe(fromLng, { attributes: true });
-
-//  observer.observe(toLat, { attributes: true });
-//  observer.observe(toLng, { attributes: true });
-
-//  var records = observer.takeRecords();
-//  console.log(records);
-//};
 
 Template.liftSubmit.rendered = function() {
   var from = document.getElementById('from')
