@@ -31,6 +31,18 @@ addMarker = function(lat, lng, title) {
   }).addTo(map);
 },
 
+checkLocalStorage = function() {
+  var lift = lscache.get('liftSubmit');
+
+  console.log(lift);
+  if (!lift) return false;
+
+  $('form.main.form').find('[name=from]').val(lift.from);
+  $('form.main.form').find('[name=to]').val(lift.to);
+  $('form.main.form').find('[name=date]').val(lift.date);
+  $('form.main.form').find('[name=price]').val(lift.price);
+},
+
 mapDrawLine = function() {
   var from = [ markerFromLng, markerFromLat ].join(',');
   var to = [ markerToLng, markerToLat ].join(',');
@@ -85,6 +97,7 @@ Template.liftSubmit.rendered = function() {
 
   $('#date').datepicker({ format: 'DD/MM/YYYY' });
 
+  checkLocalStorage();
   initLiftMap();
   //monitorHiddenInputChanges(fromLat, fromLng, toLat, toLng);
 };
@@ -111,11 +124,31 @@ var inputChanged = function(e) {
 
   if (markerFromLat && markerFromLng && markerToLat && markerToLng)
     mapDrawLine();
+},
+
+storeLocally = function(e) {
+  var cachedLift = lscache.get('liftSubmit');
+
+  console.log(cachedLift.from);
+  var lift = {
+    from: cachedLift.from || $('form.main.form').find('[name=from]').val(),
+    to: cachedLift.to || $('form.main.form').find('[name=to]').val(),
+    date: cachedLift.date || $('form.main.form').find('[name=date]').val(),
+    price: cachedLift.price || $('form.main.form').find('[name=price]').val()
+  };
+
+
+  lscache.set('liftSubmit', lift, 200);
 };
 
 Template.liftSubmit.events({
   'change #from': inputChanged,
   'change #to': inputChanged,
+
+  'change #from': storeLocally,
+  'change #to': storeLocally,
+  'change #date': storeLocally,
+  'change #price': storeLocally,
 
   'submit form': function(e) {
     e.preventDefault();

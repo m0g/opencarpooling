@@ -59,6 +59,7 @@ reactive-dict@1.0.4
 reactive-var@1.0.3
 reload@1.1.1
 retry@1.0.1
+rexzh0u:lscache@0.1.0
 routepolicy@1.0.2
 sacha:spin@2.0.4
 sergeyt:typeahead@0.10.5_6
