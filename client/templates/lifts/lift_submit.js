@@ -1,37 +1,6 @@
-var map = null
-  , polyline = null
+var map = null;
 
-  , markerFrom = null
-  , markerFromLat = 0
-  , markerFromLng = 0
-
-  , markerTo = null
-  , markerToLat = 0
-  , markerToLng = 0;
-
-var initLiftMap = function() {
-  map = L.mapbox.map('form-map', Meteor.settings.public.mapboxMapName)
-    .setView([ 46.088, 2.219 ], 6);
-
-  polyline = L.polyline([]).addTo(map);
-},
-
-addMarker = function(lat, lng, title) {
-  L.mapbox.markerLayer({
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [ lat, lng ]
-    },
-    properties: {
-      title: title,
-      description: '1718 14th St NW, Washington, DC',
-      'marker-size': 'large'
-    }
-  }).addTo(map);
-},
-
-checkLocalStorage = function() {
+var checkLocalStorage = function() {
   var lift = lscache.get('liftSubmit');
 
   console.log(lift);
@@ -41,25 +10,6 @@ checkLocalStorage = function() {
   $('form.main.form').find('[name=to]').val(lift.to);
   $('form.main.form').find('[name=date]').val(lift.date);
   $('form.main.form').find('[name=price]').val(lift.price);
-},
-
-mapDrawLine = function() {
-  var from = [ markerFromLng, markerFromLat ].join(',');
-  var to = [ markerToLng, markerToLat ].join(',');
-
-  addMarker(markerFromLat, markerFromLng, 'From');
-  addMarker(markerToLat, markerToLng, 'To');
-
-  Meteor.call('directionsSearch', from, to, function(err, res) {
-    console.log(res);
-    polyline.spliceLatLngs(0, 1000);
-
-    res.forEach(function(latLng) {
-      polyline.addLatLng(latLng);
-    });
-
-    map.fitBounds(polyline.getBounds());
-  });
 };
 
 Template.liftSubmit.rendered = function() {
@@ -98,8 +48,7 @@ Template.liftSubmit.rendered = function() {
   $('#date').datepicker({ format: 'DD/MM/YYYY' });
 
   checkLocalStorage();
-  initLiftMap();
-  //monitorHiddenInputChanges(fromLat, fromLng, toLat, toLng);
+  map = new Mapping('form-map', { polyline: true });
 };
 
 var inputChanged = function(e) {
@@ -108,28 +57,14 @@ var inputChanged = function(e) {
   markerToLat = parseFloat(document.getElementById('to-lat').value);
   markerToLng = parseFloat(document.getElementById('to-lng').value);
 
-  if (markerFromLat && markerFromLng) {
-    if (!markerFrom) {
-      markerFrom = new L.Marker(new L.LatLng(markerFromLat, markerFromLng));
-      map.addLayer(markerFrom);
-    } else markerFrom.setLatLng(new L.LatLng(markerFromLat, markerFromLng));
-  }
-
-  if (markerToLat && markerToLng) {
-    if (!markerTo) {
-      markerTo = new L.Marker(new L.LatLng(markerToLat, markerToLng));
-      map.addLayer(markerTo);
-    } else markerTo.setLatLng(new L.LatLng(markerToLat, markerToLng));
-  }
-
-  if (markerFromLat && markerFromLng && markerToLat && markerToLng)
-    mapDrawLine();
+  map.mapDirection(markerFromLat, markerFromLng, markerToLng, markerToLng);
 },
 
 storeLocally = function(e) {
   var cachedLift = lscache.get('liftSubmit');
 
-  console.log(cachedLift.from);
+  if (!cachedLift) return false;
+
   var lift = {
     from: cachedLift.from || $('form.main.form').find('[name=from]').val(),
     to: cachedLift.to || $('form.main.form').find('[name=to]').val(),
@@ -142,8 +77,8 @@ storeLocally = function(e) {
 };
 
 Template.liftSubmit.events({
-  'change #from': inputChanged,
-  'change #to': inputChanged,
+  'keyup #from': inputChanged,
+  'keyup #to': inputChanged,
 
   'change #from': storeLocally,
   'change #to': storeLocally,
