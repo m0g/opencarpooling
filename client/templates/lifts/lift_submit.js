@@ -91,9 +91,11 @@ Template.liftSubmit.events({
     var lift = {
       from: $(e.target).find('[name=from]').val(),
       to: $(e.target).find('[name=to]').val(),
-      date: $(e.target).find('[name=date]').val(),
+      date: new Date($(e.target).find('[name=date]').val()),
       price: $(e.target).find('[name=price]').val()
     };
+
+    console.log(lift.date);
 
     Meteor.call('liftInsert', lift, function(error, result) {
       // display the error to the user and abort
