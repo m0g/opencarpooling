@@ -57,7 +57,7 @@ var inputChanged = function(e) {
   markerToLat = parseFloat(document.getElementById('to-lat').value);
   markerToLng = parseFloat(document.getElementById('to-lng').value);
 
-  map.mapDirection(markerFromLat, markerFromLng, markerToLng, markerToLng);
+  map.mapDirection(markerFromLat, markerFromLng, markerToLat, markerToLng);
 },
 
 storeLocally = function(e) {
