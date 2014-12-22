@@ -9,6 +9,8 @@ Template.liftsList.rendered = function() {
     });
   };
 
+  Bender.initialize($('#page-container'));
+
   Meteor.typeahead(from, typeaheadCallback);
   Meteor.typeahead(to, typeaheadCallback);
   Meteor.typeahead.inject();

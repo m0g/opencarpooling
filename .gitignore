@@ -5,3 +5,5 @@
 *.swm
 
 settings.json
+
+*.tar.gz
