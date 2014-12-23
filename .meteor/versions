@@ -27,6 +27,7 @@ follower-livedata@1.0.2
 gabrielpoca:bender@0.1.7
 geojson-utils@1.0.1
 gildaspk:moment-datepicker@0.0.1
+gildaspk:moment-languages@2.8.5
 handlebars@1.0.1
 html-tools@1.0.2
 htmljs@1.0.2
@@ -53,9 +54,9 @@ minifiers@1.1.2
 minimongo@1.0.5
 mizzao:bootstrap-3@3.2.0_1
 mobile-status-bar@1.0.1
-momentjs:moment@2.8.4
 mongo@1.0.9
 mrt:mapbox@1.5.0
+mrt:moment-timezone@0.2.1
 mrt:moment@2.8.1
 npm-bcrypt@0.7.7
 observe-sequence@1.0.3

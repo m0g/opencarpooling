@@ -9,3 +9,7 @@ Handlebars.registerHelper("debug", function(optionalValue) {
     console.log(optionalValue); 
   } 
 });
+
+Handlebars.registerHelper('formatDate', function(date) {
+  return moment(date).tz('Europe/Paris').format('dddd D MMMM YYYY - HH:mm');
+});

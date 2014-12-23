@@ -1,5 +1,9 @@
 <template name="liftPage">
-  <div class="container">
-    {{> liftItem}}
+  <div class="lift">
+    <div class="container">
+      <h2>{{from}} {{to}}</h2>
+      <p class="date">{{formatDate date}}</p>
+      <p><b>{{price}} {{currency}}</b></p>
+    </div>
   </div>
 </template>
