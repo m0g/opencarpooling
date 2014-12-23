@@ -1,5 +1,5 @@
-Meteor.publish('lifts', function() {
-  return Lifts.find();
+Meteor.publish('latestLifts', function() {
+  return Lifts.find({}, { sort: { submitted: -1 }});
 });
 
 Meteor.publish('liftsSearch', function(from, to, when) {
