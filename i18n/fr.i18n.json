@@ -1,1 +1,6 @@
-{ "Where do you want to go?": "Où veux-tu aller ?" }
+{
+  "Where do you want to go?": "Où veux-tu aller ?",
+  "Offer a lift": "Proposer un trajet",
+  "From": "De",
+  "To": "A"
+}
