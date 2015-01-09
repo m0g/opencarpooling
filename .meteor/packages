@@ -15,7 +15,6 @@ http
 sergeyt:typeahead
 gildaspk:moment-datepicker
 chrismbeckett:fontawesome4
-mrt:mapbox
 rexzh0u:lscache
 tap:i18n
 aldeed:autoform
@@ -23,4 +22,4 @@ aldeed:collection2
 gabrielpoca:bender
 mrt:moment-timezone
 gildaspk:moment-languages
-
+fuatsengul:leaflet

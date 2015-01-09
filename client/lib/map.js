@@ -7,17 +7,28 @@ Mapping = function(tagId, opts) {
   this.markerToLat = 0;
   this.markerToLng = 0;
 
+  var self = this;
+
   if (opts.deactivateZoom)
-    this.map = L.mapbox.map(tagId, Meteor.settings.public.mapboxMapName, {
+    this.map = L.map(tagId, Meteor.settings.public.mapboxMapName, {
       zoomControl: false
     });
   else
-    this.map = L.mapbox.map(tagId, Meteor.settings.public.mapboxMapName);
+    this.map = L.map(tagId, Meteor.settings.public.mapboxMapName);
 
   this.map.setView([ 46.088, 2.219 ], 6);
 
   if (opts.polyline)
     this.polyline = L.polyline([]).addTo(this.map);
+
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(this.map);
+
+  HTTP.get("/geojson/regions.geojson", function(err, res) {
+    var france = L.geoJson(JSON.parse(res.content));
+    france.addTo(self.map);
+  });
 };
 
 Mapping.prototype.setAsBackground = function() {

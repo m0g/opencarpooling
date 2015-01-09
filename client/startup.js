@@ -5,7 +5,7 @@ var getUserLanguage = function () {
 };
 
 Meteor.startup(function() {
-  L.mapbox.accessToken = Meteor.settings.public.mapboxApiKey;
+  //L.mapbox.accessToken = Meteor.settings.public.mapboxApiKey;
 
   Session.set("showLoadingIndicator", true);
 
