@@ -5,12 +5,10 @@ var getUserLanguage = function () {
 };
 
 Meteor.startup(function() {
-  //L.mapbox.accessToken = Meteor.settings.public.mapboxApiKey;
   L.Icon.Default.imagePath = '/images';
 
   Session.set("showLoadingIndicator", true);
 
-  //moment.locale(getUserLanguage());
   moment.locale('fr');
   console.log(moment.locale());
 
