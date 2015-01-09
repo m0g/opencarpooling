@@ -25,9 +25,17 @@ Mapping = function(tagId, opts) {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(this.map);
 
-  HTTP.get("/geojson/regions.geojson", function(err, res) {
-    var france = L.geoJson(JSON.parse(res.content));
-    france.addTo(self.map);
+  HTTP.get("/geojson/fra.geojson", function(err, res) {
+    var cover = JSON.parse(res.content);
+    //var france = L.geoJson(cover);
+    var inverted = L.geoJson(cover, { 
+      invert: true ,
+      fillOpacity: 1,
+      fillColor: '#fff',
+      weight: 0
+    }).addTo(self.map);
+
+    //this.map.fitBounds(france.getBounds());
   });
 };
 
