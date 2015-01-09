@@ -8,15 +8,16 @@ Mapping = function(tagId, opts) {
   this.markerToLng = 0;
 
   var self = this;
+  var zoom = opts.zoom || 6;
 
   if (opts.deactivateZoom)
-    this.map = L.map(tagId, Meteor.settings.public.mapboxMapName, {
+    this.map = L.map(tagId, {
       zoomControl: false
     });
   else
-    this.map = L.map(tagId, Meteor.settings.public.mapboxMapName);
+    this.map = L.map(tagId);
 
-  this.map.setView([ 46.088, 2.219 ], 6);
+  this.map.setView([ 46.088, 2.219 ], zoom);
 
   if (opts.polyline)
     this.polyline = L.polyline([]).addTo(this.map);
@@ -27,15 +28,13 @@ Mapping = function(tagId, opts) {
 
   HTTP.get("/geojson/fra.geojson", function(err, res) {
     var cover = JSON.parse(res.content);
-    //var france = L.geoJson(cover);
-    var inverted = L.geoJson(cover, { 
+    var inverted = L.geoJson(cover, {
       invert: true ,
       fillOpacity: 1,
       fillColor: '#fff',
       weight: 0
     }).addTo(self.map);
 
-    //this.map.fitBounds(france.getBounds());
   });
 };
 
@@ -50,7 +49,7 @@ Mapping.prototype.setAsBackground = function() {
 }
 
 Mapping.prototype.addMarker = function(lat, lng, title) {
-  L.mapbox.markerLayer({
+  L.geoJson({
     type: 'Feature',
     geometry: {
         type: 'Point',

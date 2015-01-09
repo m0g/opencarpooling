@@ -33,6 +33,11 @@ body {
   border-radius: 0px 0px 3px 3px;
 }
 
+.navbar-default .navbar-brand:hover,
+.navbar .navbar-nav > li > a:hover {
+  color: #673ab7;
+}
+
 .navbar-default .navbar-brand,
 .navbar .navbar-nav > li > a {
   color: #fff;
@@ -254,6 +259,7 @@ div.jumbotron.search {
   #search-overlay input:-moz-placeholder { color: #fff; }
   #search-overlay input::-moz-placeholder { color: #fff; }
   #search-overlay input::-webkit-input-placeholder { color: #fff; }
+  #search-overlay input { color: #fff; }
 
 form.form.lift, #form-map {
   height: calc(100% - 52px);

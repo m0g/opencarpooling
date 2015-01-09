@@ -17,7 +17,7 @@ Template.liftsList.rendered = function() {
 
   $('#when').datepicker({ format: 'DD-MM-YYYY' });
 
-  var map = new Mapping('bg-map', { deactivateZoom: true }).setAsBackground();
+  var map = new Mapping('bg-map', { deactivateZoom: true, zoom: 8 }).setAsBackground();
 };
 
 Template.liftsList.helpers({
