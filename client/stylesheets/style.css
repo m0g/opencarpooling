@@ -33,6 +33,11 @@ body {
   border-radius: 0px 0px 3px 3px;
 }
 
+.navbar-default .navbar-brand,
+.navbar .navbar-nav > li > a {
+  color: #fff;
+}
+
 #spinner {
   height: 300px; }
 
@@ -131,7 +136,7 @@ body {
 .jumbotron{
   text-align: center;
   margin-top: 0;
-  background: rgb(131, 211, 77);
+  background: #8bc34a;
 }
 .jumbotron h2{
   font-size: 60px;
@@ -245,6 +250,10 @@ div.jumbotron.search {
   margin-top: 16%;
   box-shadow: 1px 0px 13px #bbb;
 }
+  #search-overlay input:-ms-input-placeholder { color: #fff; }
+  #search-overlay input:-moz-placeholder { color: #fff; }
+  #search-overlay input::-moz-placeholder { color: #fff; }
+  #search-overlay input::-webkit-input-placeholder { color: #fff; }
 
 form.form.lift, #form-map {
   height: calc(100% - 52px);
@@ -264,6 +273,11 @@ form.form.lift div.input-group {
   margin: 10px 0 30px;
 }
 
+form#lift-search span.input-spacer {
+  position: relative;
+  display: inline-block;
+  direction: ltr;
+}
 form#lift-search span.input-spacer input.input-lg {
   vertical-align: top;
 }

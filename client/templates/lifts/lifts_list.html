@@ -6,13 +6,17 @@
       <div id="search-overlay" class="col-md-10 col-md-offset-1">
         <h2>{{_ "Where do you want to go?"}}</h2>
         <form id="lift-search">
-          <input type="text" placeholder="From" class="input-lg" id="from" name="from" />
-          <input type="text" placeholder="To" class="input-lg" id="to" name="to" />
+          <input type="text" placeholder="From" class="input-lg form-control"
+                 id="from" name="from" />
+          <input type="text" placeholder="To" class="input-lg form-control"
+                 id="to" name="to" />
           <span class="input-spacer">
-            <input type="text" placeholder="When" class="input-lg" id="when" name="when"/>
+            <input type="text" placeholder="When" class="input-lg form-control"
+                   id="when" name="when"/>
           </span>
 
-          <input type="submit" value="Search" />
+          <input type="submit" value="Search"
+                 class="btn btn-primary btn-raised btn-material-deep-purple" />
         </form>
       </div>
     </div>
