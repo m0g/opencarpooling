@@ -1,9 +1,11 @@
 <template name="liftPage">
-  <div class="lift">
+  <div class="lift" id="lift-page">
     <div class="container">
-      <h2>{{from}} {{to}}</h2>
+      <h2>{{from}} to {{to}}</h2>
       <p class="date">{{formatDate date}}</p>
       <p><b>{{price}} {{currency}}</b></p>
     </div>
   </div>
+
+  <div id="lift-map" class="col-md-8"></div>
 </template>
