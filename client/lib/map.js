@@ -7,6 +7,8 @@ Mapping = function(tagId, opts) {
   this.markerToLat = 0;
   this.markerToLng = 0;
 
+  this.legend = null;
+
   var self = this;
   var zoom = opts.zoom || 6;
 
@@ -88,6 +90,11 @@ Mapping.prototype.mapDirection = function(mFromLat, mFromLng, mToLat, mToLng) {
     this.drawPolyline();
 };
 
+Mapping.prototype.addInfo = function(distance, duration) {
+  $('#duration').html('<p><b>Duration:</b> ' + duration + '</p>');
+  $('#distance').html('<p><b>Distance:</b> ' + distance + '</p>');
+};
+
 Mapping.prototype.drawPolyline = function() {
   var from = [ this.markerFromLng, this.markerFromLat ].join(',');
   var to = [ this.markerToLng, this.markerToLat ].join(',');
@@ -101,7 +108,9 @@ Mapping.prototype.drawPolyline = function() {
 
     if (!res) return false;
 
-    res.forEach(function(latLng) {
+    self.addInfo(res.distance, res.duration);
+
+    res.line.forEach(function(latLng) {
       self.polyline.addLatLng(latLng);
     });
 

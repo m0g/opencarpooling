@@ -1,9 +1,22 @@
 <template name="liftPage">
   <div class="lift" id="lift-page">
     <div class="container">
-      <h2>{{from}} to {{to}}</h2>
-      <p class="date">{{formatDate date}}</p>
-      <p><b>{{price}} {{currency}}</b></p>
+      <div class="col-md-10">
+        <h2>{{from}} to {{to}}</h2>
+        <p class="date">{{formatDate date}}</p>
+        <p><b>{{price}} <i class="fa fa-{{toLowerCase currency}}"></i></b></p>
+      </div>
+
+      <div class="col-md-2" id="seats-available">
+        <i class="fa fa-car"></i>
+
+        {{#each seatsCount}}
+          <i class="fa fa-male"></i>
+        {{/each}}
+      </div>
+
+      <div id="duration"></div>
+      <div id="distance"></div>
     </div>
   </div>
 

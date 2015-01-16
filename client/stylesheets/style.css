@@ -321,6 +321,8 @@ nav.navbar-default {
   border-radius: 0;
 }
 
+/* Lift page */
+
 #lift-page {
   margin-bottom: 0;
   z-index: 1;
@@ -329,4 +331,15 @@ nav.navbar-default {
 #lift-map {
   width: 100%;
   height: 400px;
+}
+
+#seats-available {
+  font-size: 25px;
+  margin-top: 26px;
+}
+
+div.info.legend {
+  padding: 10px;
+  background: #fff;
+  font-size: 15px;
 }

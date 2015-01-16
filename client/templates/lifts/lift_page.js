@@ -7,3 +7,13 @@ Template.liftPage.rendered = function() {
   );
   console.log(this.data);
 }
+
+Template.liftPage.helpers({
+  seatsCount: function() {
+    var seatsCount = [];
+
+    for (var i = 0; i < this.seats; i++) seatsCount.push('');
+
+    return seatsCount;
+  }
+});

@@ -1,5 +1,10 @@
 <template name="liftSubmit">
   <form class="main form lift col-md-4">
+    <input type="hidden" id="from-lat" value="0" name="from-lat" />
+    <input type="hidden" id="from-lng" value="0" name="from-lng" />
+    <input type="hidden" id="to-lat" value="0" name="to-lat" />
+    <input type="hidden" id="to-lng" value="0" name="to-lng" />
+
     <h1>{{_ "Offer a lift"}}</h1>
 
     <div class="input-group">
@@ -7,9 +12,6 @@
          placeholder="{{_ 'From'}}" id="from"
          autocomplete="off" spellcheck="off"
          data-source="geocode"/>
-
-      <input type="hidden" id="from-lat" value="0" name="from-lat" />
-      <input type="hidden" id="from-lng" value="0" name="from-lng" />
 
       <span class="input-group-addon">
         <i class="fa fa-map-marker"></i>
@@ -19,9 +21,6 @@
     <div class="input-group">
       <input name="to" id="to" type="text" value=""
              placeholder="{{_ 'To'}}" class="form-control input-lg"/>
-
-      <input type="hidden" id="to-lat" value="0" name="to-lat" />
-      <input type="hidden" id="to-lng" value="0" name="to-lng" />
 
       <span class="input-group-addon">
         <i class="fa fa-map-marker"></i>
@@ -42,6 +41,9 @@
              placeholder="Price" class="form-control input-lg"/>
       <span class="input-group-addon">€</span>
     </div>
+
+    <div id="duration"></div>
+    <div id="distance"></div>
 
     <div class="form-group">
       <input type="submit" value="Submit"
