@@ -6,13 +6,24 @@
       <div id="search-overlay" class="col-md-10 col-md-offset-1">
         <h2>{{_ "Where do you want to go?"}}</h2>
         <form id="lift-search">
-          <input type="text" placeholder="From" class="input-lg form-control"
-                 id="from" name="from" />
-          <input type="text" placeholder="To" class="input-lg form-control"
-                 id="to" name="to" />
-          <span class="input-spacer">
-            <input type="text" placeholder="When" class="input-lg form-control"
-                   id="when" name="when"/>
+          <span class="padding">
+            <input type="text" placeholder="From" class="input-lg form-control"
+                   id="from" name="from" />
+            <i class="fa fa-map-marker"></i>
+          </span>
+
+          <span class="padding">
+            <input type="text" placeholder="To" class="input-lg form-control"
+                   id="to" name="to" />
+            <i class="fa fa-map-marker"></i>
+          </span>
+
+          <span class="padding">
+            <span class="input-spacer">
+              <input type="text" placeholder="When" class="input-lg form-control"
+                     id="when" name="when"/>
+            </span>
+            <i class="fa fa-calendar"></i>
           </span>
 
           <input type="submit" value="Search"
