@@ -20,7 +20,6 @@ Meteor.methods({
     check(to, String);
 
     var directionsCache = DirectionsCache.findOne({ from: from, to: to });
-    console.log(directionsCache);
     if (directionsCache) return directionsCache;
 
     var line = [];
@@ -38,13 +37,13 @@ Meteor.methods({
       line.push([ step.end_location.lat, step.end_location.lng ]);
     });
 
-    var directionCache = {
+    var directionsCache = {
       from: from, to: to, line: line, distance: distance, duration: duration
     };
 
     var directionsCacheId = DirectionsCache.insert(directionsCache);
 
-    return directionCache;
+    return directionsCache;
   },
 
   liftsSearch: function(searchQuery) {
