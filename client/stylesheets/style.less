@@ -244,7 +244,7 @@ margin: 0;
 /*Custom style*/
 div.jumbotron.search {
   position: relative;
-  height: calc(100% - 52px);
+  height: ~"calc(100% - 52px)";
 }
 
 #search-overlay {
@@ -254,15 +254,16 @@ div.jumbotron.search {
   padding: 20px 30px 44px;
   margin-top: 16%;
   box-shadow: 1px 0px 13px #bbb;
+
+  input:-ms-input-placeholder { color: #fff; }
+  input:-moz-placeholder { color: #fff; }
+  input::-moz-placeholder { color: #fff; }
+  input::-webkit-input-placeholder { color: #fff; }
+  input { color: #fff; }
 }
-  #search-overlay input:-ms-input-placeholder { color: #fff; }
-  #search-overlay input:-moz-placeholder { color: #fff; }
-  #search-overlay input::-moz-placeholder { color: #fff; }
-  #search-overlay input::-webkit-input-placeholder { color: #fff; }
-  #search-overlay input { color: #fff; }
 
 form.form.lift, #form-map {
-  height: calc(100% - 52px);
+  height: ~"calc(100% - 52px)";
   margin: 0;
 }
 
@@ -281,6 +282,7 @@ form.form.lift, #form-map {
   margin-right: 5px;
   /*text-shadow: -1px 0 #9e9e9e, 0 1px #9e9e9e, 1px 0 #9e9e9e, 0 -1px #9e9e9e;*/
 }
+
 #seats i.\/star-on-png {
   color: #673ab7;
 }
@@ -289,18 +291,20 @@ form.form.lift, #form-map {
   content: "\f183";
 }
 
-form.form.lift span.twitter-typeahead {
-  width: 100%;
-  height: 100%;
-}
+form.form.lift {
+  span.twitter-typeahead {
+    width: 100%;
+    height: 100%;
+  }
 
-form.form.lift .input-group span.twitter-typeahead input.form-control {
-  height: 100%;
-}
+  .input-group span.twitter-typeahead input.form-control {
+    height: 100%;
+  }
 
-form.form.lift div.input-group {
-  margin: 10px 0 30px;
-  width: 100%;
+  div.input-group {
+    margin: 10px 0 30px;
+    width: 100%;
+  }
 }
 
 form#lift-search span.input-spacer {
