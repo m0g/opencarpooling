@@ -37,9 +37,23 @@
     </div>
 
     <div class="input-group">
-      <input name="price" id="price" type="text" value=""
+      <input name="price" id="price" type="number" value=""
              placeholder="Price" class="form-control input-lg"/>
       <span class="input-group-addon">€</span>
+    </div>
+
+    <div class="input-group">
+      <label for="seats">Seats available</label>
+      <div id="seats"></div>
+    </div>
+
+    <div class="input-group">
+      <textarea class="form-control input-lg" id="info" name="info"
+                placeholder="Additional information"></textarea>
+
+      <span class="input-group-addon">
+        <i class="fa fa-info-circle"></i>
+      </span>
     </div>
 
     <div id="duration"></div>

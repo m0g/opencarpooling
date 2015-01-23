@@ -266,6 +266,29 @@ form.form.lift, #form-map {
   margin: 0;
 }
 
+#seats i {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+  color: #bdbdbd;
+  margin-right: 5px;
+  /*text-shadow: -1px 0 #9e9e9e, 0 1px #9e9e9e, 1px 0 #9e9e9e, 0 -1px #9e9e9e;*/
+}
+#seats i.\/star-on-png {
+  color: #673ab7;
+}
+
+#seats i:before {
+  content: "\f183";
+}
+
 form.form.lift span.twitter-typeahead {
   width: 100%;
   height: 100%;
@@ -277,6 +300,7 @@ form.form.lift .input-group span.twitter-typeahead input.form-control {
 
 form.form.lift div.input-group {
   margin: 10px 0 30px;
+  width: 100%;
 }
 
 form#lift-search span.input-spacer {
@@ -353,3 +377,4 @@ div.info.legend {
   -o-transform: translate(50%, -50%) rotate(-135deg);
   transform: translate(50%, -50%) rotate(-135deg);
 }
+

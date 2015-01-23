@@ -46,9 +46,12 @@ Template.liftSubmit.rendered = function() {
   Meteor.typeahead.inject();
 
   $('#date').datepicker({ format: 'DD/MM/YYYY' });
+  $('#seats').raty({ starType : 'i', scoreName: 'seats' });
 
   checkLocalStorage();
-  map = new Mapping('form-map', { polyline: true });
+
+  map = new Mapping('form-map', { deactivateZoom: true, polyline: true });
+  map.setAsBackground();
 };
 
 var inputChanged = function(e) {
@@ -57,7 +60,8 @@ var inputChanged = function(e) {
   markerToLat = parseFloat(document.getElementById('to-lat').value);
   markerToLng = parseFloat(document.getElementById('to-lng').value);
 
-  map.mapDirection(markerFromLat, markerFromLng, markerToLat, markerToLng);
+  if (markerFromLat && markerFromLng && markerToLat && markerToLng)
+    map.mapDirection(markerFromLat, markerFromLng, markerToLat, markerToLng);
 },
 
 storeLocally = function(e) {
@@ -92,7 +96,9 @@ Template.liftSubmit.events({
       from: $(e.target).find('[name=from]').val(),
       to: $(e.target).find('[name=to]').val(),
       date: new Date($(e.target).find('[name=date]').val()),
-      price: $(e.target).find('[name=price]').val()
+      price: parseInt($(e.target).find('[name=price]').val()),
+      seats: parseInt($(e.target).find('[name=seats]').val()),
+      info: $(e.target).find('[name=info]').val()
     };
 
     console.log(lift.date);
