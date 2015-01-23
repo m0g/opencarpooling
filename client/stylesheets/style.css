@@ -343,3 +343,13 @@ div.info.legend {
   background: #fff;
   font-size: 15px;
 }
+
+#velocity-status-widget {
+  left: -150px;
+  right: none;
+
+  -webkit-transform: translate(50%, -50%) rotate(-135deg);
+  -moz-transform: translate(50%, -50%) rotate(-135deg);
+  -o-transform: translate(50%, -50%) rotate(-135deg);
+  transform: translate(50%, -50%) rotate(-135deg);
+}
