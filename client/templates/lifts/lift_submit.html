@@ -1,14 +1,14 @@
 <template name="liftSubmit">
   <form class="main form lift col-md-4">
-    <input type="hidden" id="from-lat" value="0" name="from-lat" />
-    <input type="hidden" id="from-lng" value="0" name="from-lng" />
-    <input type="hidden" id="to-lat" value="0" name="to-lat" />
-    <input type="hidden" id="to-lng" value="0" name="to-lng" />
+    <input type="hidden" id="from-lat" class="changing" value="" name="from-lat" />
+    <input type="hidden" id="from-lng" class="changing" value="" name="from-lng" />
+    <input type="hidden" id="to-lat" class="changing" value="" name="to-lat" />
+    <input type="hidden" id="to-lng" class="changing" value="" name="to-lng" />
 
     <h1>{{_ "Offer a lift"}}</h1>
 
     <div class="input-group">
-      <input class="form-control input-lg" name="from" type="text"
+      <input class="form-control input-lg changing" name="from" type="text"
          placeholder="{{_ 'From'}}" id="from"
          autocomplete="off" spellcheck="off"
          data-source="geocode"/>
@@ -20,7 +20,7 @@
 
     <div class="input-group">
       <input name="to" id="to" type="text" value=""
-             placeholder="{{_ 'To'}}" class="form-control input-lg"/>
+             placeholder="{{_ 'To'}}" class="form-control input-lg changing"/>
 
       <span class="input-group-addon">
         <i class="fa fa-map-marker"></i>
@@ -29,7 +29,7 @@
 
     <div class="input-group">
       <input name="date" id="date" type="text" value=""
-             placeholder="Date" class="form-control input-lg"/>
+             placeholder="Date" class="form-control input-lg changing"/>
 
       <span class="input-group-addon">
         <i class="fa fa-calendar"></i>
@@ -38,7 +38,7 @@
 
     <div class="input-group">
       <input name="price" id="price" type="number" value=""
-             placeholder="Price" class="form-control input-lg"/>
+             placeholder="Price" class="form-control input-lg changing"/>
       <span class="input-group-addon">€</span>
     </div>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div class="input-group">
-      <textarea class="form-control input-lg" id="info" name="info"
+      <textarea class="form-control input-lg changing" id="info" name="info"
                 placeholder="Additional information"></textarea>
 
       <span class="input-group-addon">
