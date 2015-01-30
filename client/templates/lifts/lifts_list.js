@@ -15,7 +15,11 @@ Template.liftsList.rendered = function() {
   Meteor.typeahead(to, typeaheadCallback);
   Meteor.typeahead.inject();
 
-  $('#when').datepicker({ format: 'DD-MM-YYYY' });
+  $('#when').datepicker({
+    startDate: '0',
+    endDate: '+2m',
+    format: 'dd/mm/yyyy'
+  });
 
   var map = new Mapping('bg-map', { deactivateZoom: true, zoom: 8 }).setAsBackground();
 };

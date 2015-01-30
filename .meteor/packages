@@ -12,7 +12,6 @@ accounts-password
 audit-argument-checks
 http
 sergeyt:typeahead
-gildaspk:moment-datepicker
 chrismbeckett:fontawesome4
 rexzh0u:lscache
 tap:i18n
@@ -28,3 +27,4 @@ ian:accounts-ui-bootstrap-3
 mike:mocha
 mrt:jquery-raty
 less
+rajit:bootstrap3-datepicker

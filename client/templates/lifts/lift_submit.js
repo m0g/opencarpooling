@@ -85,7 +85,12 @@ Template.liftSubmit.rendered = function() {
 
   Meteor.typeahead.inject();
 
-  $('#date').datepicker({ format: 'DD/MM/YYYY' });
+  $('#date').datepicker({
+    startDate: '0',
+    endDate: '+2m',
+    format: 'dd/mm/yyyy'
+  });
+
   $('#seats').raty({ starType : 'i', scoreName: 'seats' });
 
   map = new Mapping('form-map', { deactivateZoom: true, polyline: true });
