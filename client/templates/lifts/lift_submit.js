@@ -32,7 +32,7 @@ inputChanged = function(e) {
 storeLocally = function(e) {
   var cachedLift = lscache.get('liftSubmit');
 
-  console.log(cachedLift);
+  //console.log(cachedLift);
 
   var lift = {
     from: $('form.main.form').find('[name=from]').val() || (cachedLift && cachedLift.from),
@@ -108,17 +108,16 @@ Template.liftSubmit.events({
 
   'submit form': function(e) {
     e.preventDefault();
+    var date = moment($(e.target).find('[name=date]').val(), 'DD-MM-YYYY');
 
     var lift = {
       from: $(e.target).find('[name=from]').val(),
       to: $(e.target).find('[name=to]').val(),
-      date: new Date($(e.target).find('[name=date]').val()),
+      date: date.toDate(),
       price: parseInt($(e.target).find('[name=price]').val()),
       seats: parseInt($(e.target).find('[name=seats]').val()),
       info: $(e.target).find('[name=info]').val()
     };
-
-    console.log(lift.date);
 
     Meteor.call('liftInsert', lift, function(error, result) {
       // display the error to the user and abort

@@ -2,7 +2,7 @@
   <div class="lift">
     <div class="lift-content">
       <h3><a href="{{pathFor 'liftPage'}}">{{title}}</a></h3>
-      <p>{{date}} <b>{{price}} {{currency}}</b></p>
+      <p>{{formatDate date}} <b>{{price}} {{currency}}</b></p>
     </div>
 
     {{#if ownLift}}<a href="{{pathFor 'liftEdit'}}">Edit</a>{{/if}}
