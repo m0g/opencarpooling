@@ -19,12 +19,11 @@ aldeed:autoform
 aldeed:collection2
 gabrielpoca:bender
 mrt:moment-timezone
-gildaspk:moment-languages
 fuatsengul:leaflet
 fezvrasta:bootstrap-material-design
-
 ian:accounts-ui-bootstrap-3
 mike:mocha
 mrt:jquery-raty
 less
 rajit:bootstrap3-datepicker
+wylio:mandrill

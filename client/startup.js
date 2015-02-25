@@ -9,8 +9,7 @@ Meteor.startup(function() {
 
   Session.set("showLoadingIndicator", true);
 
-  moment.locale('fr');
-  console.log(moment.locale());
+  moment.locale('fr', momentFrench);
 
   TAPi18n.setLanguage(getUserLanguage())
     .done(function () {
