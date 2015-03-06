@@ -3,7 +3,12 @@ Meteor.publish('lifts', function() {
 });
 
 Meteor.publish('latestLifts', function() {
-  return Lifts.find({}, { sort: { submitted: -1 }});
+  var today = moment().toDate();
+
+  return Lifts.find(
+    { date: { $gte : today }},
+    { sort: { date: -1 }}
+  );
 });
 
 Meteor.publish('liftsSearch', function(from, to, when) {
@@ -21,25 +26,28 @@ Meteor.publish('liftsSearch', function(from, to, when) {
   console.log(fromCoords);
   console.log(toCoords);
 
-  var query = { 
-    fromLoc: { $near : { 
-      $geometry: { 
-        type : "Point" ,
-        coordinates: fromCoords
-      },
-      $maxDistance : 50,
-      $minDistance : 10
-    }},
-
-    toLoc: { $near : { 
-      $geometry: { 
-        type : "Point" ,
-        coordinates: toCoords
-      },
-      $maxDistance : 50,
-      $minDistance : 10
-    }}
-  };
+  var query = { $and: [
+    {
+      fromLoc: { $near : { 
+        $geometry: { 
+          type : "Point" ,
+          coordinates: fromCoords
+        },
+        $maxDistance : 50,
+        $minDistance : 10
+      }}
+    },
+    {
+      toLoc: { $near : { 
+        $geometry: { 
+          type : "Point" ,
+          coordinates: toCoords
+        },
+        $maxDistance : 50,
+        $minDistance : 10
+      }}
+    }
+  ]};
 
   return Lifts.find(query);
 });
