@@ -17,35 +17,47 @@ Meteor.publish('liftsSearch', function(from, to, when) {
   check(when, String);
 
   // Need to get the coords for from & to
-  var fromCoords = CitiesCache.findOne({ query: from }).autoCompletion[0];
+  var self = this
+    , date = moment(when, 'DD-MM-YYYY')
+    , dayAfter = moment(date).add('days', 1)
+    , fromCoords = Meteor.call('citySearch', from)[0]
+    , toCoords = Meteor.call('citySearch', to)[0];
+
   fromCoords = [ parseFloat(fromCoords.lat), parseFloat(fromCoords.lng) ];
-
-  var toCoords = CitiesCache.findOne({ query: to }).autoCompletion[0];
   toCoords = [ parseFloat(toCoords.lat), parseFloat(toCoords.lng) ];
-
-  var self = this;
+  console.log('date', date);
 
   // Prepare the queries
   var queryFrom = {
-    fromLoc: { $near : { 
-      $geometry: { 
-        type : "Point" ,
-        coordinates: fromCoords
-      },
-      $maxDistance : 50,
-      $minDistance : 0
-    }}
+    $and: [{
+      date: { $gte: date.toDate(), $lte: dayAfter.toDate() }
+    },
+    {
+      fromLoc: { $near : { 
+        $geometry: { 
+          type : "Point" ,
+          coordinates: fromCoords
+        },
+        $maxDistance : 50,
+        $minDistance : 0
+      }}
+    }]
   },
 
   queryTo = {
-    toLoc: { $near : { 
-      $geometry: { 
-        type : "Point" ,
-        coordinates: toCoords
-      },
-      $maxDistance : 50,
-      $minDistance : 0
-    }}
+    $and: [{
+      date: { $gte: date.toDate(), $lte: dayAfter.toDate() }
+    },
+    {
+      toLoc: { $near : { 
+        $geometry: { 
+          type : "Point" ,
+          coordinates: toCoords
+        },
+        $maxDistance : 50,
+        $minDistance : 0
+      }}
+    }]
   };
 
   // geoNear queries don't work with more than one near value.
