@@ -18,7 +18,7 @@ Template.liftsList.rendered = function() {
   $('#when').datepicker({
     startDate: '0',
     endDate: '+2m',
-    format: 'dd/mm/yyyy'
+    format: 'dd-mm-yyyy'
   });
 
   var map = new Mapping('bg-map', { deactivateZoom: true, zoom: 8 }).setAsBackground();
