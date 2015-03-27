@@ -108,6 +108,8 @@ Template.liftSubmit.rendered = function() {
     format: 'dd/mm/yyyy'
   });
 
+  $('.clockpicker').clockpicker();
+
   $('#seats').raty({ starType : 'i', scoreName: 'seats' });
 
   map = new Mapping('form-map', { deactivateZoom: true, polyline: true });
@@ -125,7 +127,11 @@ Template.liftSubmit.events({
 
   'submit form': function(e) {
     e.preventDefault();
-    var date = moment($(e.target).find('[name=date]').val(), 'DD-MM-YYYY');
+    var date = moment(
+      [ $(e.target).find('[name=date]').val(),
+        $(e.target).find('[name=time]').val() ].join(' '),
+      'DD-MM-YYYY hh:mm'
+    );
 
     var lift = {
       from: $(e.target).find('[name=from]').val(),
