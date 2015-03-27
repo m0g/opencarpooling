@@ -1,26 +1,6 @@
 var map = null;
 
-var checkLocalStorage = function() {
-  var lift = lscache.get('liftSubmit');
-
-  if (!lift) return false;
-
-  $('form.main.form').find('[name=from]').val(lift.from);
-  $('form.main.form').find('[name=from-lat]').val(lift.fromLat);
-  $('form.main.form').find('[name=from-lng]').val(lift.fromLng);
-
-  $('form.main.form').find('[name=to]').val(lift.to);
-  $('form.main.form').find('[name=to-lat]').val(lift.toLat);
-  $('form.main.form').find('[name=to-lng]').val(lift.toLng);
-
-  $('form.main.form').find('[name=date]').val(lift.date);
-  $('form.main.form').find('[name=time]').val(lift.time);
-  $('form.main.form').find('[name=price]').val(lift.price);
-
-  if (lift.from.length > 0 && lift.to.length > 0) inputChanged();
-},
-
-inputChanged = function(e) {
+var inputChanged = function(e) {
   var markerFromLat = parseFloat(document.getElementById('from-lat').value);
   var markerFromLng = parseFloat(document.getElementById('from-lng').value);
   var markerToLat = parseFloat(document.getElementById('to-lat').value);
@@ -28,26 +8,6 @@ inputChanged = function(e) {
 
   if (markerFromLat && markerFromLng && markerToLat && markerToLng)
     map.mapDirection(markerFromLat, markerFromLng, markerToLat, markerToLng);
-},
-
-storeLocally = function(e) {
-  var cachedLift = lscache.get('liftSubmit');
-
-  var lift = {
-    from: $('form.main.form').find('[name=from]').val() || (cachedLift && cachedLift.from),
-    fromLat: $('form.main.form').find('[name=from-lat]').val() || (cachedLift && cachedLift.fromLat),
-    fromLng: $('form.main.form').find('[name=from-lng]').val() || (cachedLift && cachedLift.fromLng),
-
-    to: $('form.main.form').find('[name=to]').val() || (cachedLift && cachedLift.to),
-    toLat: $('form.main.form').find('[name=to-lat]').val() || (cachedLift && cachedLift.toLat),
-    toLng: $('form.main.form').find('[name=to-lng]').val() || (cachedLift && cachedLift.toLng),
-
-    date: $('form.main.form').find('[name=date]').val() || (cachedLift && cachedLift.date),
-    time: $('form.main.form').find('[name=time]').val() || (cachedLift && cachedLift.time),
-    price: $('form.main.form').find('[name=price]').val() || (cachedLift && cachedLift.price)
-  };
-
-  lscache.set('liftSubmit', lift, 200);
 };
 
 Template.liftSubmit.helpers({
@@ -81,7 +41,7 @@ Template.liftSubmit.rendered = function() {
       fromLng.value = res[0].lng;
 
       Session.set('loading-from', false);
-      storeLocally();
+      LiftLocal.store();
       callback(res);
     });
   });
@@ -95,7 +55,7 @@ Template.liftSubmit.rendered = function() {
       toLng.value = res[0].lng;
 
       Session.set('loading-to', false);
-      storeLocally();
+      LiftLocal.store();
       callback(res);
     });
   });
@@ -108,21 +68,28 @@ Template.liftSubmit.rendered = function() {
     format: 'dd/mm/yyyy'
   });
 
-  $('.clockpicker').clockpicker();
+  $('.clockpicker').clockpicker({ autoclose: true, beforeDone: LiftLocal.store });
 
-  $('#seats').raty({ starType : 'i', scoreName: 'seats' });
+  $('#seats').raty({ starType : 'i', scoreName: 'seats', click: LiftLocal.storeSeats });
+
+  LiftLocal.retrieveSeats(function(seats) {
+    $('#seats').raty('score', seats);
+  });
 
   map = new Mapping('form-map', { deactivateZoom: true, polyline: true });
   map.setAsBackground();
 
-  checkLocalStorage();
+  LiftLocal.retrieve(function(lift) {
+    if (lift.from && lift.to && lift.from.length > 0 && lift.to.length > 0)
+      inputChanged();
+  });
 };
 
 Template.liftSubmit.events({
   'keyup #from': inputChanged,
   'keyup #to': inputChanged,
 
-  'change .changing': storeLocally,
+  'change .changing': LiftLocal.store,
 
   'submit form': function(e) {
     e.preventDefault();
