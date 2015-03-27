@@ -50,7 +50,20 @@ storeLocally = function(e) {
   lscache.set('liftSubmit', lift, 200);
 };
 
+Template.liftSubmit.helpers({
+  loadingFrom: function() {
+    return Session.get('loading-from');
+  },
+
+  loadingTo: function() {
+    return Session.get('loading-to');
+  }
+});
+
 Template.liftSubmit.rendered = function() {
+  Session.set('loading-from', false);
+  Session.set('loading-to', false);
+
   var from = document.getElementById('from')
     , fromLat = document.getElementById('from-lat')
     , fromLng = document.getElementById('from-lng')
@@ -61,11 +74,13 @@ Template.liftSubmit.rendered = function() {
 
   Meteor.typeahead(from, function(query, callback) {
     if (query.length < 4) return [];
+    Session.set('loading-from', true);
 
     Meteor.call('citySearch', query, function(err, res) {
       fromLat.value = res[0].lat;
       fromLng.value = res[0].lng;
 
+      Session.set('loading-from', false);
       storeLocally();
       callback(res);
     });
@@ -73,11 +88,13 @@ Template.liftSubmit.rendered = function() {
 
   Meteor.typeahead(to, function(query, callback) {
     if (query.length < 4) return [];
+    Session.set('loading-to', true);
 
     Meteor.call('citySearch', query, function(err, res) {
       toLat.value = res[0].lat;
       toLng.value = res[0].lng;
 
+      Session.set('loading-to', false);
       storeLocally();
       callback(res);
     });
