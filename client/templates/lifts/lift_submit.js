@@ -14,6 +14,7 @@ var checkLocalStorage = function() {
   $('form.main.form').find('[name=to-lng]').val(lift.toLng);
 
   $('form.main.form').find('[name=date]').val(lift.date);
+  $('form.main.form').find('[name=time]').val(lift.time);
   $('form.main.form').find('[name=price]').val(lift.price);
 
   if (lift.from.length > 0 && lift.to.length > 0) inputChanged();
@@ -32,8 +33,6 @@ inputChanged = function(e) {
 storeLocally = function(e) {
   var cachedLift = lscache.get('liftSubmit');
 
-  //console.log(cachedLift);
-
   var lift = {
     from: $('form.main.form').find('[name=from]').val() || (cachedLift && cachedLift.from),
     fromLat: $('form.main.form').find('[name=from-lat]').val() || (cachedLift && cachedLift.fromLat),
@@ -44,6 +43,7 @@ storeLocally = function(e) {
     toLng: $('form.main.form').find('[name=to-lng]').val() || (cachedLift && cachedLift.toLng),
 
     date: $('form.main.form').find('[name=date]').val() || (cachedLift && cachedLift.date),
+    time: $('form.main.form').find('[name=time]').val() || (cachedLift && cachedLift.time),
     price: $('form.main.form').find('[name=price]').val() || (cachedLift && cachedLift.price)
   };
 
@@ -122,8 +122,7 @@ Template.liftSubmit.events({
   'keyup #from': inputChanged,
   'keyup #to': inputChanged,
 
-  'change #date': storeLocally,
-  'change #price': storeLocally,
+  'change .changing': storeLocally,
 
   'submit form': function(e) {
     e.preventDefault();
