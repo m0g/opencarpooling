@@ -8,7 +8,6 @@ mizzao:bootstrap-3
 underscore
 iron:router
 sacha:spin
-accounts-password
 audit-argument-checks
 http
 sergeyt:typeahead
@@ -21,7 +20,6 @@ gabrielpoca:bender
 mrt:moment-timezone
 fuatsengul:leaflet
 fezvrasta:bootstrap-material-design
-ian:accounts-ui-bootstrap-3
 mike:mocha
 mrt:jquery-raty
 less

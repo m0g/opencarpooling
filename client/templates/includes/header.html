@@ -12,12 +12,9 @@
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
-          {{#if currentUser}}
-            <li><a href="{{pathFor 'liftSubmit'}}" id="submit-link">Submit Lift</a></li>
-          {{/if}}
+          <li><a href="{{pathFor 'liftSubmit'}}" id="submit-link">Submit Lift</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          {{> loginButtons}}
         </ul>
       </div>
     <!--</div>-->
