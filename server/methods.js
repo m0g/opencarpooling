@@ -44,5 +44,24 @@ Meteor.methods({
     var directionsCacheId = DirectionsCache.insert(directionsCache);
 
     return directionsCache;
+  },
+
+  sendMail: function() {
+    console.log('sending a mail');
+
+    Meteor.Mandrill.send({
+      host:           "smtp.mandrillapp.com"
+      , port:           587
+      , to:             "nogues.loic@gmail.com"
+      , from:           "info@opencarpooling.meteor.com"
+      , subject:        "Mandrill knows Javascript!"
+      , body:           "Hello from NodeJS!"
+      , authentication: "LOGIN"
+      , username:       Meteor.settings.mandrill.username
+      , password:       Meteor.settings.mandrill.password
+      }, function(err, result){
+        console.log('mail sent?', err, results);
+      }
+    );
   }
 });

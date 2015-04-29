@@ -1,7 +1,7 @@
 if (Lifts.find().count() === 0) {
   // ensureIndex on the server side
-  Lifts._ensureIndex({ fromLoc: "2dsphere" });
-  Lifts._ensureIndex({ toLoc: "2dsphere" });
+  //Lifts._ensureIndex({ fromLoc: "2dsphere" });
+  //Lifts._ensureIndex({ toLoc: "2dsphere" });
 
   var today = moment();
   var tomorrow = moment(today).add('days', 1);
@@ -22,3 +22,11 @@ if (Lifts.find().count() === 0) {
     });
   });
 } 
+
+Meteor.startup(function() {
+  return Meteor.Mandrill.config({
+    username: Meteor.settings.mandrill.username,
+    key: Meteor.settings.mandrill.password,
+    password: Meteor.settings.mandrill.username,
+  });
+});
