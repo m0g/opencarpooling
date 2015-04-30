@@ -119,7 +119,7 @@ Template.liftSubmit.events({
 
       // Need to remove the input content too
       lscache.remove('liftSubmit')
-      Router.go('liftPage', {_id: result._id});
+      Router.go('userSubmit', {_id: result._id});
     });
   }
 });
