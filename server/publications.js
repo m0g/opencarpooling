@@ -1,11 +1,12 @@
 Meteor.publish('lifts', function() {
-  return Lifts.find();
+  return Lifts.find({ activated: true });
 });
 
 Meteor.publish('latestLifts', function() {
   var today = moment().toDate();
 
   return Lifts.find(
+    { activated: true },
     { date: { $gte : today }},
     { sort: { date: -1 }}
   );
