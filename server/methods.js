@@ -85,6 +85,20 @@ Meteor.methods({
     }
   },
 
+  liftActivate: function(token) {
+    check(token, String);
+
+    var decoded = jwt.decode(token, Meteor.settings.secret);
+    console.log('decoded', decoded); //=> { foo: 'bar' }
+
+    if (decoded.liftId) {
+      var updatedLifts = Lifts.update(decoded.liftId, { $set: { activated: true }});
+      console.log('upd', updatedLifts);
+      return { _id: decoded.liftId };
+    } else
+      return false;
+  },
+
   sendMail: function(to, subject, html) {
     wrappedMandrillSend = Meteor.wrapAsync(Meteor.Mandrill.send);
 
