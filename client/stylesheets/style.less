@@ -1,6 +1,12 @@
+@navbar-bg: #00EAFF;
+@navbar-txt: #FA6899;
+/*@navbar-txt: #FF9BB9;*/
+@liftpage-bg: #61F2FF;
+
 body, html {
   height: 100%;
   min-height: 100%;
+  background: @liftpage-bg;
 }
 
 .grid-block, .main, .lift, .comments li, .comment-form {
@@ -18,7 +24,21 @@ body, html {
 
 body {
   background: #eee;
-  color: #666666; }
+  color: #666666; 
+}
+
+h1, h2, h3 {
+  color: @navbar-txt;
+  text-shadow: 0px 0px 7px #fff;
+}
+
+a {
+  color: @navbar-bg;
+}
+
+i.fa {
+  color: @navbar-txt;
+}
 
 .navbar {
   margin-bottom: 0;
@@ -34,6 +54,9 @@ body {
 }
 
 .navbar-default .navbar-brand:hover,
+.navbar-material-light-green.navbar {
+  background: @navbar-bg;
+}
 .navbar .navbar-nav > li > a:hover {
   color: #673ab7;
 }
@@ -41,6 +64,12 @@ body {
 .navbar-default .navbar-brand,
 .navbar .navbar-nav > li > a {
   color: #fff;
+}
+.navbar-default .navbar-brand {
+  color: @navbar-txt;
+  text-shadow: 0px 0px 7px #fff;
+  font-weight: bold;
+  font-size: 26px;
 }
 
 #spinner {
@@ -141,7 +170,7 @@ body {
 .jumbotron{
   text-align: center;
   margin-top: 0;
-  background: #8bc34a;
+  background: @navbar-bg;
 }
 .jumbotron h2{
   font-size: 60px;
@@ -249,7 +278,7 @@ div.jumbotron.search {
 
 #search-overlay {
   position: relative;
-  background: rgb(131, 211, 77);
+  background: @navbar-bg;
   z-index: 1;
   padding: 20px 30px 44px;
   margin-top: 16%;
@@ -267,6 +296,8 @@ div.jumbotron.search {
 form.form.lift, #form-map {
   height: ~"calc(100% - 52px)";
   margin: 0;
+  background: @liftpage-bg;
+  color: #fff;
 }
 
 #seats i {
@@ -363,6 +394,8 @@ nav.navbar-default {
 #lift-page {
   margin-bottom: 0;
   z-index: 1;
+  background: @liftpage-bg;
+  color: #fff;
 }
 
 #lift-map {
