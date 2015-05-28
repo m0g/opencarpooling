@@ -1,12 +1,15 @@
-@navbar-bg: #00EAFF;
-@navbar-txt: #FA6899;
-/*@navbar-txt: #FF9BB9;*/
-@liftpage-bg: #61F2FF;
+@navbar-bg: #009688;
+@navbar-txt: #e0f2f1;
+@liftpage-bg: #26a69a;
+@lift-input-color: #fff;
+@purple: #A31094;
+@clear-yellow: #E2B90B;
+@dark-teal: #074943;
 
 body, html {
   height: 100%;
   min-height: 100%;
-  background: @liftpage-bg;
+  background: @navbar-txt;
 }
 
 .grid-block, .main, .lift, .comments li, .comment-form {
@@ -23,21 +26,21 @@ body, html {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
 
 body {
-  background: #eee;
+  /*background: #eee;*/
   color: #666666; 
 }
 
 h1, h2, h3 {
   color: @navbar-txt;
-  text-shadow: 0px 0px 7px #fff;
+  /*text-shadow: 0px 0px 7px #fff;*/
 }
 
 a {
   color: @navbar-bg;
 }
 
-i.fa {
-  color: @navbar-txt;
+i.fa, span.glyphicon, span.input-group-addon {
+  color: @clear-yellow;
 }
 
 .navbar {
@@ -53,7 +56,6 @@ i.fa {
   border-radius: 0px 0px 3px 3px;
 }
 
-.navbar-default .navbar-brand:hover,
 .navbar-material-light-green.navbar {
   background: @navbar-bg;
 }
@@ -65,9 +67,10 @@ i.fa {
 .navbar .navbar-nav > li > a {
   color: #fff;
 }
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand {
   color: @navbar-txt;
-  text-shadow: 0px 0px 7px #fff;
   font-weight: bold;
   font-size: 26px;
 }
@@ -273,7 +276,7 @@ margin: 0;
 /*Custom style*/
 div.jumbotron.search {
   position: relative;
-  height: ~"calc(100% - 52px)";
+  height: ~"calc(100% - 60px)";
 }
 
 #search-overlay {
@@ -291,14 +294,19 @@ div.jumbotron.search {
 
   input { color: #fff; }
   span.padding { padding: 0 10px 0 0; }
+
+  input.btn-material-deep-purple {
+    background: @purple;
+  }
 }
 
 form.form.lift, #form-map {
-  height: ~"calc(100% - 52px)";
+  height: ~"calc(100% - 60px)";
   margin: 0;
-  background: @liftpage-bg;
-  color: #fff;
+  background: @navbar-txt;
+  /*color: #fff;*/
 }
+
 
 #seats i {
   -moz-osx-font-smoothing: grayscale;
@@ -317,14 +325,23 @@ form.form.lift, #form-map {
 }
 
 #seats i.\/star-on-png {
-  color: #673ab7;
+  color: @purple;
 }
 
 #seats i:before {
   content: "\f183";
 }
 
+/* --------------------------------- */
+/* ----------- Submit lift --------- */
+/* --------------------------------- */
 form.form.lift {
+  /*color: @lift-input-color;*/
+
+  h1 {
+    color: @dark-teal;
+  }
+
   span.twitter-typeahead {
     width: 100%;
     height: 100%;
@@ -337,6 +354,18 @@ form.form.lift {
   div.input-group {
     margin: 10px 0 30px;
     width: 100%;
+  }
+
+  input::-webkit-input-placeholder,
+  input:-moz-placeholder,
+  input::-moz-placeholder,
+  input:-ms-input-placeholder,
+  input {
+    color: @lift-input-color;
+  }
+
+  input.btn-material-deep-purple {
+    background: @purple;
   }
 }
 
@@ -377,7 +406,12 @@ form#lift-search {
 
 #search-navbar {
   border-radius: 0;
-  padding-top: 10px;
+  padding: 25px 10px;
+  background: @liftpage-bg;
+
+  input {
+    color: @navbar-txt;
+  }
 }
 
 #latest-lifts {
@@ -396,6 +430,7 @@ nav.navbar-default {
   z-index: 1;
   background: @liftpage-bg;
   color: #fff;
+  border-radius: 0;
 }
 
 #lift-map {
@@ -426,3 +461,10 @@ div.info.legend {
   transform: translate(50%, -50%) rotate(-135deg);
 }
 
+.tt-dropdown-menu {
+  color: #333;
+}
+
+form.form.user {
+  h1 { color: @dark-teal; }
+}

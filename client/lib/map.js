@@ -33,7 +33,7 @@ Mapping = function(tagId, opts) {
     var inverted = L.geoJson(cover, {
       invert: true ,
       fillOpacity: 1,
-      fillColor: '#fff',
+      fillColor: '#e0f2f1',
       weight: 0
     }).addTo(self.map);
 
