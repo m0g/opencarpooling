@@ -325,7 +325,7 @@ form.form.lift, #form-map {
 }
 
 #seats i.\/star-on-png {
-  color: @purple;
+  color: @clear-yellow;
 }
 
 #seats i:before {
@@ -349,6 +349,9 @@ form.form.lift {
 
   .input-group span.twitter-typeahead input.form-control {
     height: 100%;
+  }
+  .input-group span.twitter-typeahead input[readonly] {
+    border: 0;
   }
 
   div.input-group {
@@ -409,8 +412,31 @@ form#lift-search {
   padding: 25px 10px;
   background: @liftpage-bg;
 
+  h2 {
+    text-align: center;
+  }
+
   input {
     color: @navbar-txt;
+    font-size: 16px;
+  }
+
+  input.submit {
+    float: right;
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  span.input-spacer {
+    position: relative;
+    font-size: 18px;
+    padding-right: 30px;
+
+    i.fa {
+      position: absolute;
+      top: 6px;
+      right: 0;
+    }
   }
 }
 
@@ -431,6 +457,15 @@ nav.navbar-default {
   background: @liftpage-bg;
   color: #fff;
   border-radius: 0;
+
+  a.contact {
+    position: absolute;
+    top: -30px;
+    right: 30px;
+    background: @purple;
+
+    i { color: @navbar-txt; }
+  }
 }
 
 #lift-map {

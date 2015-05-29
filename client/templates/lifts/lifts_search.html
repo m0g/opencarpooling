@@ -1,20 +1,30 @@
 <template name="liftsSearch">
   <nav class="navbar navbar-material-lime" id="search-navbar">
   <div class="container">
+    <h2>{{_ "Where do you want to go?"}}</h2>
+
     <form id="lift-search" class="col-md-12">
-      <span class="input-spacer col-md-4">
+      <span class="input-spacer col-md-3">
         <input type="text" placeholder="From" class="input col-md-12 form-control"
                id="from" value="{{searchQuery.from}}" />
+        <i class="fa fa-map-marker"></i>
       </span>
 
-      <span class="input-spacer col-md-4">
+      <span class="input-spacer col-md-3">
         <input type="text" placeholder="To" class="input col-md-12 form-control"
                id="to" value="{{searchQuery.to}}" />
+        <i class="fa fa-map-marker"></i>
       </span>
 
-      <span class="input-spacer col-md-4">
+      <span class="input-spacer col-md-3">
         <input type="text" placeholder="When" class="input col-md-12 form-control"
                id="when" value="{{searchQuery.when}}" />
+        <i class="fa fa-calendar"></i>
+      </span>
+
+      <span class="input-spacer col-md-3">
+        <input type="submit" value="Search"
+               class="btn btn-primary btn-raised submit btn-material-deep-purple" />
       </span>
     </form>
   </div>
