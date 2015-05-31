@@ -1,5 +1,7 @@
 Template.liftPage.rendered = function() {
-  map = new Mapping('lift-map', { polyline: true });
+  map = new Mapping('lift-map', { polyline: true, deactivateZoom: true });
+
+  map.setAsBackground();
 
   map.mapDirection(
     this.data.fromLoc[0], this.data.fromLoc[1], 
