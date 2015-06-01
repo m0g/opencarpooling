@@ -6,7 +6,7 @@ Template.userSubmit.events({
 
     Meteor.call('sendActivationCode', this.liftId, email, function(err, result) {
       console.log('activation code', err, result);
-      Router.go('liftPage', {_id: result._id});
+      Router.go('liftPage', {_id: result.liftId});
     });
   }
 });

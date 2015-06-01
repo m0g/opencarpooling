@@ -37,7 +37,7 @@ Meteor.methods({
       line.push([ step.end_location.lat, step.end_location.lng ]);
     });
 
-    var directionsCache = {
+    directionsCache = {
       from: from, to: to, line: line, distance: distance, duration: duration
     };
 
@@ -54,7 +54,7 @@ Meteor.methods({
     console.log('rand', Random.id());
 
     var user = Meteor.users.find({ emails: { $elemMatch: { address: email } } });
-    var lift = Lifts.findOne({ _id: liftId })
+    var lift = Lifts.findOne({ _id: liftId });
 
     if (!user)
       user = Meteor.users.insert({ username: email, emails: [email] });
@@ -69,9 +69,7 @@ Meteor.methods({
         '">Activate your lift</a>'
       ].join('');
 
-      wrappedMandrillSend = Meteor.wrapAsync(Meteor.Mandrill.send, Meteor.Mandrill);
-
-      var sentMail = wrappedMandrillSend({
+      var mailSent = Meteor.Mandrill.send({
         host:           "smtp.mandrillapp.com",
         port:           587,
         to:             email,
@@ -83,9 +81,8 @@ Meteor.methods({
         password:       Meteor.settings.mandrill.password
       });
 
-      console.log('sync mail send');
-
-      return sentMail;
+      return { liftId: liftId };
+      //return { liftId: liftId, user: user };
     }
   },
 
