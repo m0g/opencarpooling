@@ -506,3 +506,64 @@ form.form.user {
 .input-group span.twitter-typeahead input[readonly] {
   border: 0;
 }
+
+#message-sidebar {
+  width: 400px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -406px;
+  transition: right 1s;
+  background: #BF13AE;
+  z-index: 1000;
+  box-shadow: -3px -2px 10px -6px #333;
+
+  i.fa {
+    color: #E0F2F1;
+  }
+
+  div.title {
+    position: relative;
+
+    h2 {
+      background: #A31094;
+      font-weight: bold;
+      font-size: 26px;
+      margin: 0;
+      padding: 16px 20px 15px 50px;
+    }
+
+    button.close {
+      position: absolute;
+      top: 17px;
+      left: 15px;
+
+      i.fa {
+        font-size: 26px;
+      }
+    }
+  }
+
+  form#message-form {
+    background: #E0F2F1;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    textarea {
+      float: left;
+      width: 77%;
+    }
+
+    button.btn {
+      float: right;
+    }
+  }
+}
+
+#message-sidebar.show {
+  transition: right 1s;
+  right: 0;
+}

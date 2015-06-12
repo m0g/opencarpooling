@@ -19,3 +19,16 @@ Template.liftPage.helpers({
     return seatsCount;
   }
 });
+
+Template.liftPage.events({
+  'click a.contact': function(e) {
+    e.preventDefault();
+    $('#message-sidebar').toggleClass('show');
+  },
+
+  'click button.close': function(e) {
+    console.log('closing now');
+    e.preventDefault();
+    $('#message-sidebar').toggleClass('show');
+  }
+});
