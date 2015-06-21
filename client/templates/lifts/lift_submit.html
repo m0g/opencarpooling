@@ -1,85 +1,86 @@
 <template name="liftSubmit">
-  <form class="main form lift col-md-4">
-    <input type="hidden" id="from-lat" class="changing" value="" name="from-lat" />
-    <input type="hidden" id="from-lng" class="changing" value="" name="from-lng" />
-    <input type="hidden" id="to-lat" class="changing" value="" name="to-lat" />
-    <input type="hidden" id="to-lng" class="changing" value="" name="to-lng" />
+  <div id="lift-submit"></div>
+  <!--<form class="main form lift col-md-4">-->
+  <!--  <input type="hidden" id="from-lat" class="changing" value="" name="from-lat" />-->
+  <!--  <input type="hidden" id="from-lng" class="changing" value="" name="from-lng" />-->
+  <!--  <input type="hidden" id="to-lat" class="changing" value="" name="to-lat" />-->
+  <!--  <input type="hidden" id="to-lng" class="changing" value="" name="to-lng" />-->
 
-    <h1>{{_ "Offer a lift"}}</h1>
+  <!--  <h1>{{_ "Offer a lift"}}</h1>-->
 
-    <div class="input-group">
-      <input class="form-control input-lg changing" name="from" type="text"
-         placeholder="{{_ 'From'}}" id="from"
-         autocomplete="off" spellcheck="off"
-         data-source="geocode"/>
+  <!--  <div class="input-group">-->
+  <!--    <input class="form-control input-lg changing" name="from" type="text"-->
+  <!--       placeholder="{{_ 'From'}}" id="from"-->
+  <!--       autocomplete="off" spellcheck="off"-->
+  <!--       data-source="geocode"/>-->
 
-      <span class="input-group-addon">
-        <i class="fa fa-map-marker"></i>
-      </span>
+  <!--    <span class="input-group-addon">-->
+  <!--      <i class="fa fa-map-marker"></i>-->
+  <!--    </span>-->
 
-      {{#if loadingFrom}}
-        <i class="fa fa-spinner fa-spin"></i>
-      {{/if}}
-    </div>
+  <!--    {{#if loadingFrom}}-->
+  <!--      <i class="fa fa-spinner fa-spin"></i>-->
+  <!--    {{/if}}-->
+  <!--  </div>-->
 
-    <div class="input-group">
-      <input name="to" id="to" type="text" value=""
-             placeholder="{{_ 'To'}}" class="form-control input-lg changing"/>
+  <!--  <div class="input-group">-->
+  <!--    <input name="to" id="to" type="text" value=""-->
+  <!--           placeholder="{{_ 'To'}}" class="form-control input-lg changing"/>-->
 
-      <span class="input-group-addon">
-        <i class="fa fa-map-marker"></i>
-      </span>
+  <!--    <span class="input-group-addon">-->
+  <!--      <i class="fa fa-map-marker"></i>-->
+  <!--    </span>-->
 
-      {{#if loadingTo}}
-        <i class="fa fa-spinner fa-spin"></i>
-      {{/if}}
-    </div>
+  <!--    {{#if loadingTo}}-->
+  <!--      <i class="fa fa-spinner fa-spin"></i>-->
+  <!--    {{/if}}-->
+  <!--  </div>-->
 
-    <div class="input-group">
-      <input name="date" id="date" type="text" value=""
-             placeholder="Date" class="form-control input-lg changing"/>
+  <!--  <div class="input-group">-->
+  <!--    <input name="date" id="date" type="text" value=""-->
+  <!--           placeholder="Date" class="form-control input-lg changing"/>-->
 
-      <span class="input-group-addon">
-        <i class="fa fa-calendar"></i>
-      </span>
-    </div>
+  <!--    <span class="input-group-addon">-->
+  <!--      <i class="fa fa-calendar"></i>-->
+  <!--    </span>-->
+  <!--  </div>-->
 
-    <div class="input-group clockpicker">
-      <input type="text" name="time" id="time" placeholder="Time"
-             class="form-control input-lg changing">
-      <span class="input-group-addon">
-        <span class="glyphicon glyphicon-time"></span>
-      </span>
-    </div>
+  <!--  <div class="input-group clockpicker">-->
+  <!--    <input type="text" name="time" id="time" placeholder="Time"-->
+  <!--           class="form-control input-lg changing">-->
+  <!--    <span class="input-group-addon">-->
+  <!--      <span class="glyphicon glyphicon-time"></span>-->
+  <!--    </span>-->
+  <!--  </div>-->
 
-    <div class="input-group">
-      <input name="price" id="price" type="number" value=""
-             placeholder="Price" class="form-control input-lg changing"/>
-      <span class="input-group-addon">€</span>
-    </div>
+  <!--  <div class="input-group">-->
+  <!--    <input name="price" id="price" type="number" value=""-->
+  <!--           placeholder="Price" class="form-control input-lg changing"/>-->
+  <!--    <span class="input-group-addon">€</span>-->
+  <!--  </div>-->
 
-    <div class="input-group">
-      <label for="seats">Seats available</label>
-      <div id="seats"></div>
-    </div>
+  <!--  <div class="input-group">-->
+  <!--    <label for="seats">Seats available</label>-->
+  <!--    <div id="seats"></div>-->
+  <!--  </div>-->
 
-    <div class="input-group">
-      <textarea class="form-control input-lg changing" id="info" name="info"
-                placeholder="Additional information"></textarea>
+  <!--  <div class="input-group">-->
+  <!--    <textarea class="form-control input-lg changing" id="info" name="info"-->
+  <!--              placeholder="Additional information"></textarea>-->
 
-      <span class="input-group-addon">
-        <i class="fa fa-info-circle"></i>
-      </span>
-    </div>
+  <!--    <span class="input-group-addon">-->
+  <!--      <i class="fa fa-info-circle"></i>-->
+  <!--    </span>-->
+  <!--  </div>-->
 
-    <div id="duration"></div>
-    <div id="distance"></div>
+  <!--  <div id="duration"></div>-->
+  <!--  <div id="distance"></div>-->
 
-    <div class="form-group">
-      <input type="submit" value="Submit"
-             class="btn btn-primary btn-raised btn-material-deep-purple"/>
-    </div>
-  </form>
+  <!--  <div class="form-group">-->
+  <!--    <input type="submit" value="Submit"-->
+  <!--           class="btn btn-primary btn-raised btn-material-deep-purple"/>-->
+  <!--  </div>-->
+  <!--</form>-->
 
-  <div id="form-map" class="col-md-8"></div>
+  <!--<div id="form-map" class="col-md-8"></div>-->
 </template>

@@ -1,9 +1,9 @@
-//Template.liftSubmit.rendered = function() {
-//  React.render(
-//    <LiftSubmit />,
-//    document.getElementById('content')
-//  );
-//};
+Template.liftSubmit.rendered = function() {
+  React.render(
+    <LiftSubmit />,
+    document.getElementById('lift-submit')
+  );
+};
 
 //var map = null;
 
