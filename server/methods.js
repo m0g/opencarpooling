@@ -46,7 +46,12 @@ Meteor.methods({
 
     var res = HTTP.get("http://maps.googleapis.com/maps/api/directions/json", options);
 
-    console.log('res data', options, res.data);
+    if (res.data.status == 'ZERO_RESULTS') {
+      console.log(options);
+      DirectionsCache.remove({ from: from, to: to });
+      return false;
+    }
+
     var startLocation = res.data.routes[0].legs[0].start_location
       , duration = res.data.routes[0].legs[0].duration.text
       , distance = res.data.routes[0].legs[0].distance.text;
