@@ -22,10 +22,10 @@ fezvrasta:bootstrap-material-design
 mike:mocha
 mrt:jquery-raty
 less
-rajit:bootstrap3-datepicker
 wylio:mandrill
 andrasph:clockpicker
 accounts-base
 random
 outatime:jwt-simple
 reactjs:react
+cwohlman:pickadate
