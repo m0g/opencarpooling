@@ -1,32 +1,41 @@
 InputTime = ReactMeteor.createClass({
+  getMeteorState: function() {
+    console.log('init');
+    return { value: this.props.value };
+  },
+
   componentDidMount: function() {
     var time = React.findDOMNode(this.refs.time);
+    var self = this;
 
-    console.log('in time', this.state);
-
-    $(time).clockpicker({
-      autoclose: true,
-      afterDone: function() {
-        console.log('after done');
-      }
+    $(time).pickatime({
+      onClose: self.handleChange
     });
   },
 
-  handleChange: function(e) {
-    console.log('incoming', e);
+  componentWillReceiveProps: function(nextProps) {
+    console.log('next', nextProps);
+    if (nextProps.value.length > 0)
+      this.setState({ value: nextProps.value });
   },
 
-  handleInput: function(e) {
-    console.log('incoming input', e);
+  handleChange: function() {
+    var time = React.findDOMNode(this.refs.time);
+    console.log('time on close', time.value.trim());
+
+    if (time.value.trim()) {
+      this.setState({ value: time.value.trim() });
+      this.props.onChange({ time: time.value.trim() })
+    }
   },
 
   render: function() {
+    console.log('props', this.props);
     return (
       <div className="input-group clockpicker">
         <input type="text" name="time" ref="time"
           placeholder={this.props.placeholder}
-          onChange={this.handleChange}
-          onInput={this.handleInput}
+          value={this.state.value}
           className="form-control input-lg changing" />
 
         <span className="input-group-addon">

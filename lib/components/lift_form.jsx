@@ -1,25 +1,30 @@
 LiftForm = ReactMeteor.createClass({
   getMeteorState: function() {
-    return {};
+    return { lift: {
+      date: '',
+      time: ''
+    } };
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
 
-    //var time = React.findDOMNode(this.refs.time).value.trim();
-    //console.log('time', time);
     console.log('state', this.state);
   },
 
   updateForm: function(data) {
-    console.log('update form', data);
-    var state = this.state;
+    //console.log('update form', data);
+    var lift = this.state.lift;
+    //console.log('before', lift);
 
     Object.keys(data).forEach(function(key) {
-      state[key] = data[key];
+      if (data[key])
+        lift[key] = data[key];
     });
+    //console.log('after', lift);
 
-    this.setState(state);
+    this.setState({ lift: lift });
+    //console.log('state', this.state);
   },
 
   render: function() {
@@ -29,9 +34,14 @@ LiftForm = ReactMeteor.createClass({
 
         <InputLocation id="from" placeholder="From" input={this.props.lift.from}/>
         <InputLocation id="to" placeholder="To" input={this.props.lift.to}/>
-        <InputDate id="date" placeholder="Date" input={this.props.lift.date}
+
+        <InputDate id="date" placeholder="Date"
+          value={this.state.lift.date}
           onChange={this.updateForm} />
-        <InputTime id="time" placeholder="Time" input={this.props.lift.time} />
+
+        <InputTime id="time" placeholder="Time"
+          value={this.state.lift.time}
+          onChange={this.updateForm} />
 
         <div id="duration"></div>
         <div id="distance"></div>
