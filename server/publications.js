@@ -2,6 +2,10 @@ Meteor.publish('lifts', function() {
   return Lifts.find({ activated: true });
 });
 
+Meteor.publish('pendingLifts', function() {
+  return Lifts.find({ activated: false });
+});
+
 Meteor.publish('latestLifts', function() {
   var today = moment().toDate();
 
